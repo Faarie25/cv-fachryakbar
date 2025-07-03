@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="pageTitle">Fachry Akbar - Video Editor & Digital Marketing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome (still included for general icons, but not for social popup) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* CSS Variables for Light Mode - Metallic Liquid Glass Palette (White/Silver & Gold) */
+        :root {
+            --bg-gradient-start: #E0E0E0; /* Light Grey */
+            --bg-gradient-mid: #F0F0F0; /* Off-White */
+            --bg-gradient-end: #E8E8E8; /* Slightly Darker Light Grey */
+            --text-color: #212121; /* Dark Grey/Black */
+            --card-bg: rgba(255, 255, 255, 0.5); /* More transparent white */
+            --card-border: rgba(255, 255, 255, 0.8);
+            --card-shadow: rgba(0, 0, 0, 0.15);
+            --section-title-border: #FFD700; /* Gold */
+            --section-title-color: #B8860B; /* Dark Goldenrod */
+            --header-name-color: #212121;
+            --header-subtitle-color: #424242;
+            --link-color: #B8860B;
+            --icon-color: #FFD700;
+            --toggle-bg: rgba(245, 245, 220, 0.5); /* Beige with transparency for liquid glass */
+            --toggle-text: #B8860B;
+            --input-bg: rgba(255, 255, 255, 0.4);
+            --input-border: rgba(255, 255, 255, 0.7);
+            --input-placeholder: #757575;
+            --button-bg: #FFD700;
+            --button-text: #212121;
+            --button-hover-bg: #DAA520; /* Goldenrod */
+            --logo-text-color: #212121;
+            --video-overlay-bg: rgba(255, 255, 255, 0.2); /* Light overlay for header */
+            --sticky-nav-bg: rgba(255, 255, 255, 0.6); /* Semi-transparent white for sticky nav */
+            --sticky-nav-border: rgba(255, 255, 255, 0.9);
+            --sticky-nav-shadow: rgba(0, 0, 0, 0.2);
+            --social-popup-overlay: rgba(0, 0, 0, 0.5);
+            --header-text-shadow-light: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.6); /* White glow */
+
+            /* Skill Bar Variables */
+            --skill-bar-bg: rgba(255, 215, 0, 0.2); /* Light gold transparent */
+            --skill-bar-fill: #FFD700; /* Gold */
+            --skill-bar-text: #212121; /* Dark text on skill bar */
+        }
+
+        /* CSS Variables for Dark Mode - Metallic Liquid Glass Palette (Black & Gold) */
+        body.dark-mode {
+            --bg-gradient-start: #121212; /* Very Dark Grey/Near Black */
+            --bg-gradient-mid: #1A1A1A; /* Slightly Lighter Dark Grey */
+            --bg-gradient-end: #212121; /* Dark Grey */
+            --text-color: #E0E0E0; /* Light Grey */
+            --card-bg: rgba(0, 0, 0, 0.5); /* More transparent black for liquid effect */
+            --card-border: rgba(255, 255, 255, 0.1); /* Subtler white border for reflection */
+            --card-shadow: rgba(0, 0, 0, 0.9); /* Very strong shadow */
+            --section-title-border: #FFD700; /* Gold */
+            --section-title-color: #FFECB3; /* Light Gold */
+            --header-name-color: #FFFFFF;
+            --header-subtitle-color: #BDBDBD;
+            --link-color: #FFECB3;
+            --icon-color: #FFD700;
+            --toggle-bg: rgba(66, 66, 66, 0.5); /* Dark grey with transparency for liquid glass */
+            --toggle-text: #FFD700;
+            --input-bg: rgba(0, 0, 0, 0.4);
+            --input-border: rgba(255, 255, 255, 0.15);
+            --input-placeholder: #BDBDBD;
+            --button-bg: #FFD700;
+            --button-text: #212121;
+            --button-hover-bg: #DAA520;
+            --logo-text-color: #E0E0E0;
+            --video-overlay-bg: rgba(0, 0, 0, 0.4); /* Dark overlay for header */
+            --sticky-nav-bg: rgba(0, 0, 0, 0.6); /* Semi-transparent black for sticky nav */
+            --sticky-nav-border: rgba(255, 255, 255, 0.15);
+            --sticky-nav-shadow: rgba(0, 0, 0, 0.6);
+            --social-popup-overlay: rgba(0, 0, 0, 0.7);
+            --header-text-shadow-light: none; /* No shadow needed for dark mode text */
+
+            /* Skill Bar Variables for Dark Mode */
+            --skill-bar-bg: rgba(255, 215, 0, 0.05); /* Very light gold transparent */
+            --skill-bar-fill: #FFD700; /* Gold */
+            --skill-bar-text: #212121; /* Dark text on skill bar */
+        }
+
+        /* Base styles using CSS variables */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-mid), var(--bg-gradient-end));
+            background-size: 400% 400%;
+            animation: gradientAnimation 25s ease infinite; /* Slower, more fluid animation */
+            min-height: 100vh;
+            color: var(--text-color);
+            transition: background 1s ease, color 1s ease; /* Slower transition */
+            position: relative; /* For the shimmering effect */
+            overflow-x: hidden; /* Prevent horizontal scroll from parallax */
+        }
+
+        /* Shimmering background effect */
+        body::before {
+            content: '';
+            position: fixed; /* Fixed to viewport */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -3; /* Below everything */
+            background: radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 40%);
+            background-size: 200% 200%; /* Larger than viewport */
+            animation: shimmerEffect 30s linear infinite alternate; /* Slow, subtle shimmer */
+            opacity: 0.8;
+        }
+
+        @keyframes shimmerEffect {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .section-title {
+            border-left: 6px solid var(--section-title-border); /* Thicker border */
+            padding-left: 1.2rem; /* More padding */
+            color: var(--section-title-color);
+            font-weight: 700;
+            letter-spacing: 0.05em; /* Slight letter spacing for modern look */
+            transition: border-color 1s ease, color 1s ease;
+        }
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(40px); /* Much stronger blur for liquid glass */
+            -webkit-backdrop-filter: blur(40px);
+            border-radius: 1.5rem; /* Even more rounded corners */
+            border: 1px solid var(--card-border);
+            box-shadow: 0 20px 60px 0 var(--card-shadow); /* More pronounced shadow */
+            padding: 2rem; /* Default padding for cards */
+            margin-bottom: 3rem; /* More spacing */
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s ease-in-out, background 1s ease, border-color 1s ease, box-shadow 1s ease; /* Fluid transition */
+            position: relative; /* For pseudo-elements */
+            overflow: hidden; /* Ensure reflections stay within bounds and video is clipped */
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* Gold reflection overlay */
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0) 50%, rgba(255, 215, 0, 0.1) 100%);
+            pointer-events: none;
+            border-radius: inherit;
+            opacity: 0.8;
+        }
+        .card:hover {
+            transform: translateY(-15px); /* More pronounced lift */
+            box-shadow: 0 30px 80px 0 var(--card-shadow); /* Enhanced shadow on hover */
+        }
+        .icon {
+            width: 1.5rem; /* Larger icons */
+            height: 1.5rem;
+            margin-right: 0.75rem;
+            display: inline-block;
+            vertical-align: middle;
+            color: var(--icon-color);
+            transition: color 1s ease;
+        }
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 1s ease;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Specific text color overrides for dynamic theming */
+        header h1 {
+            color: var(--header-name-color);
+            transition: color 1s ease;
+            text-shadow: var(--header-text-shadow-light); /* Apply text shadow */
+        }
+        header p {
+            color: var(--header-subtitle-color);
+            transition: color 1s ease;
+            text-shadow: var(--header-text-shadow-light); /* Apply text shadow */
+        }
+        /* Override for dark mode */
+        body.dark-mode header h1,
+        body.dark-mode header p {
+            text-shadow: none; /* Remove shadow in dark mode */
+        }
+
+        .card h3 { color: var(--text-color); transition: color 1s ease; }
+        .card p, .card ul li { color: var(--text-color); transition: color 1s ease; }
+        .text-blue-400 { color: var(--link-color); transition: color 1s ease; }
+        .text-gray-400 { color: var(--text-color); transition: color 1s ease; }
+
+        /* Profile picture styling */
+        .profile-pic {
+            width: 150px; /* Even larger */
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--section-title-border); /* Thicker border */
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7); /* Gold glow */
+            transition: border-color 1s ease, box-shadow 1s ease;
+        }
+
+        /* Theme toggle button */
+        .theme-toggle-button {
+            background-color: var(--toggle-bg);
+            color: var(--toggle-text);
+            padding: 0.6rem 1.2rem; /* Slightly smaller padding */
+            border-radius: 9999px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 1s ease, color 1s ease, transform 0.3s ease, border-color 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem; /* Slightly smaller gap */
+            border: 1px solid var(--toggle-text);
+            outline: none;
+            backdrop-filter: blur(15px); /* Liquid Glassmorphism effect */
+            -webkit-backdrop-filter: blur(15px); /* For Safari */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        .theme-toggle-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* New Social Links Button */
+        .social-links-button {
+            background-color: var(--toggle-bg); /* Reusing toggle background for consistency */
+            color: var(--toggle-text); /* Reusing toggle text color */
+            width: 3rem; /* Slightly smaller circular button size */
+            height: 3rem;
+            border-radius: 50%; /* Make it circular */
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 1s ease, color 1s ease, transform 0.3s ease, border-color 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--toggle-text);
+            outline: none;
+            backdrop-filter: blur(15px); /* Liquid Glassmorphism effect */
+            -webkit-backdrop-filter: blur(15px); /* For Safari */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        .social-links-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        .social-links-button .icon {
+            margin-right: 0; /* Remove margin for centered icon */
+            width: 1.6rem; /* Slightly smaller icon */
+            height: 1.6rem;
+        }
+
+        /* Language Toggle Button */
+        .lang-toggle-button {
+            background-color: var(--toggle-bg);
+            color: var(--toggle-text);
+            padding: 0.6rem 1.2rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 1s ease, color 1s ease, transform 0.3s ease, border-color 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            border: 1px solid var(--toggle-text);
+            outline: none;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .lang-toggle-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Social Links Pop-up */
+        .social-popup {
+            position: fixed; /* Fixed position to overlay content */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--social-popup-overlay); /* Semi-transparent overlay */
+            backdrop-filter: blur(5px); /* Subtle blur for the overlay */
+            -webkit-backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000; /* Higher than sticky nav */
+            opacity: 0; /* Start hidden */
+            visibility: hidden; /* Hide completely when not active */
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            pointer-events: none; /* Disable interaction when hidden */
+        }
+        .social-popup.active {
+            opacity: 1;
+            visibility: visible; /* Show when active */
+            pointer-events: auto; /* Enable interaction when active */
+        }
+        .social-popup-content {
+            /* Reusing .card styles for consistency */
+            background: var(--card-bg);
+            backdrop-filter: blur(40px); /* Strong glassmorphism */
+            -webkit-backdrop-filter: blur(40px);
+            border-radius: 1.5rem;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 20px 60px 0 var(--card-shadow);
+            padding: 2.5rem; /* Generous padding */
+            max-width: 400px; /* Max width for pop-up */
+            width: 90%; /* Responsive width */
+            text-align: left; /* Align text within pop-up */
+            transform: translateY(20px); /* Initial slight offset for animation */
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .social-popup.active .social-popup-content {
+            transform: translateY(0); /* Slide up animation */
+            opacity: 1;
+        }
+        .social-popup-content ul li a {
+            display: block; /* Changed to block for full width */
+            text-align: center; /* Center text */
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease;
+            color: var(--text-color); /* Ensure text color is readable */
+            font-weight: 600;
+        }
+        .social-popup-content ul li a:hover {
+            background-color: rgba(255, 215, 0, 0.1); /* Subtle gold hover */
+            text-decoration: none; /* Remove underline on hover for cleaner look */
+        }
+
+
+        /* Navigation styles */
+        .nav-container { /* New container for sticky nav */
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 1000; /* Ensure it stays on top of other content */
+            padding: 0.75rem 0; /* Vertical padding for the sticky bar */
+            background: var(--sticky-nav-bg); /* Use new sticky background variable */
+            backdrop-filter: blur(25px); /* Stronger blur for glass effect */
+            -webkit-backdrop-filter: blur(25px);
+            border-bottom: 1px solid var(--sticky-nav-border); /* Subtle border for definition */
+            box-shadow: 0 4px 15px var(--sticky-nav-shadow); /* More subtle shadow for sticky bar */
+            transition: background-color 0.5s ease, backdrop-filter 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .nav-container .nav-links-wrapper {
+            display: flex;
+            flex-wrap: wrap; /* Allows items to wrap to next line */
+            justify-content: center;
+            align-items: center;
+            gap: 1rem; /* Default gap */
+            max-width: 1000px; /* Max width for nav links */
+            margin: 0 auto; /* Center the nav links */
+            padding: 0 1rem; /* Default horizontal padding */
+        }
+
+        .nav-link {
+            padding: 0.7rem 1.4rem; /* Default padding for larger screens */
+            border-radius: 0.7rem;
+            font-weight: 600;
+            color: var(--header-subtitle-color);
+            transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease, transform 0.2s ease; /* Added transform for hover */
+            cursor: pointer;
+            text-align: center; /* Center text if it wraps */
+            flex-shrink: 0; /* Prevent shrinking too much */
+            min-width: fit-content; /* Allow content to dictate min-width */
+        }
+        .nav-link:hover {
+            background-color: rgba(255, 215, 0, 0.1); /* Subtle gold hover background */
+            color: var(--section-title-color); /* Change text color to gold on hover */
+            transform: translateY(-3px); /* Slight lift on hover */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+        }
+        .nav-link.active {
+            background-color: var(--section-title-border);
+            color: var(--button-text);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4); /* Stronger shadow for active */
+        }
+
+        /* Responsive adjustments for smaller screens (Tailwind's 'sm' breakpoint is 640px) */
+        @media (max-width: 767px) { /* Changed breakpoint to 767px for mobile-first approach */
+            /* Ensure nav-container is visible and wraps */
+            .nav-container {
+                display: block; /* Show nav container on mobile */
+                padding: 0.5rem 0; /* Adjust padding for mobile sticky nav */
+            }
+            .nav-container .nav-links-wrapper {
+                flex-direction: row; /* Keep buttons in a row */
+                flex-wrap: wrap; /* Allow wrapping */
+                gap: 0.5rem; /* Smaller gap */
+                padding: 0 0.5rem; /* Smaller horizontal padding */
+                justify-content: center; /* Center items */
+            }
+            .nav-link {
+                padding: 0.4rem 0.7rem; /* Even smaller padding for very compact buttons */
+                font-size: 0.75rem; /* Smaller font size for mobile nav links */
+                flex-grow: 1; /* Allow them to grow */
+                min-width: unset;
+                white-space: nowrap; /* Prevent text wrapping within nav links */
+            }
+            /* Adjust header content for mobile */
+            .header-content-wrapper {
+                padding-top: 1.5rem; /* Reduce top padding */
+                padding-bottom: 1.5rem; /* Reduce bottom padding */
+            }
+            .profile-pic {
+                margin-bottom: 1rem; /* Reduce margin below profile pic */
+            }
+            .header-intro-text {
+                font-size: 0.9rem; /* Smaller font for intro text on very small screens */
+                margin-top: 1rem; /* Reduce margin top */
+                padding: 0 0.5rem; /* Adjust padding */
+            }
+            .header-buttons-wrapper {
+                margin-top: 1rem; /* Reduce margin top for buttons */
+                gap: 0.5rem; /* Smaller gap between buttons */
+            }
+            .theme-toggle-button, .social-links-button, .lang-toggle-button {
+                padding: 0.4rem 0.8rem; /* Smaller padding for header buttons */
+                font-size: 0.8rem; /* Smaller font size */
+                gap: 0.4rem;
+            }
+            .social-links-button {
+                width: 2.2rem; /* Even smaller circular button */
+                height: 2.2rem;
+            }
+            .social-links-button .icon {
+                width: 1.1rem; /* Even smaller icon */
+                height: 1.1rem;
+            }
+        }
+
+        /* Revert desktop specific styles if they were overriding mobile */
+        @media (min-width: 768px) {
+            .header-content-wrapper {
+                padding-top: 3.5rem;
+                padding-bottom: 3.5rem;
+            }
+            .header-intro-text {
+                font-size: 1.5rem;
+            }
+            .nav-container {
+                display: block; /* Ensure desktop nav is visible */
+            }
+        }
+
+
+        /* Page content styling */
+        .page-content {
+            width: 100%;
+            display: none; /* Controlled by JS */
+        }
+        .page-content.active {
+            display: block; /* Controlled by JS */
+        }
+
+        /* Summary Text Styling (Reverted to original, no expand/collapse) */
+        .card p.leading-relaxed {
+            line-height: 1.75; /* Ensure enough line spacing */
+            padding: 0 1.5rem; /* Increased horizontal padding to prevent text from touching edges */
+            box-sizing: border-box; /* Include padding in element's total width/height */
+            font-size: 0.95rem; /* Slightly smaller font size for better fit */
+        }
+
+        /* Skill Bar Styles */
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align text to left */
+            margin-bottom: 1rem;
+        }
+        .skill-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            transition: color 1s ease;
+        }
+        .skill-bar-container {
+            width: 100%;
+            background-color: var(--skill-bar-bg);
+            border-radius: 0.5rem;
+            height: 12px; /* Height of the bar */
+            overflow: hidden;
+            position: relative; /* For the fill element */
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+            transition: background-color 1s ease;
+        }
+        .skill-bar-fill {
+            height: 100%;
+            background-color: var(--skill-bar-fill);
+            border-radius: 0.5rem;
+            width: 0; /* Start at 0 for animation */
+            transition: width 1.5s ease-out; /* Smooth fill animation */
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-shadow: 0 0 8px var(--skill-bar-fill); /* Subtle glow */
+        }
+        .skill-bar-percentage {
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--skill-bar-text); /* Text color on the bar */
+            z-index: 1; /* Ensure text is above fill */
+            mix-blend-mode: difference; /* Helps text contrast on varying background */
+        }
+        /* Trigger animation when section is in view */
+        .skills-section.in-view .skill-bar-fill {
+            width: var(--skill-level);
+        }
+
+
+        /* Form specific styles */
+        .form-input {
+            width: 100%;
+            padding: 1rem; /* Larger padding */
+            border-radius: 0.7rem;
+            border: 1px solid var(--input-border);
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            transition: background-color 0.6s ease, border-color 0.6s ease, color 0.6s ease;
+            outline: none;
+        }
+        .form-input::placeholder {
+            color: var(--input-placeholder);
+        }
+        .form-input:focus {
+            border-color: var(--section-title-border);
+            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.5); /* Gold focus ring */
+        }
+        .form-button {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            padding: 1rem 2rem; /* Larger button */
+            border-radius: 0.7rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            outline: none;
+        }
+        .form-button:hover {
+            background-color: var(--button-hover-bg);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Slightly larger min-width */
+            gap: 2.5rem; /* More gap */
+            justify-items: center;
+            align-items: center;
+        }
+        /* Updated logo-item to be an <a> tag directly */
+        .logo-item {
+            background: var(--card-bg); /* Use card-bg for consistency */
+            backdrop-filter: blur(25px); /* Stronger blur */
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 1.25rem; /* More rounded */
+            border: 1px solid var(--card-border);
+            box-shadow: 0 8px 32px var(--card-shadow); /* Stronger shadow */
+            padding: 1.5rem; /* More padding */
+            display: flex; /* Make it a flex container */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 170px; /* Increased height */
+            text-align: center;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s ease-in-out, background 1s ease, border-color 1s ease;
+            text-decoration: none; /* Remove default underline from <a> */
+            color: var(--logo-text-color); /* Inherit text color */
+        }
+        .logo-item:hover {
+            transform: scale(1.1); /* More pronounced scale */
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+        }
+        .logo-item img {
+            max-width: 90%; /* Slightly larger max width */
+            max-height: 100px; /* Adjusted max height */
+            object-fit: cover; /* Ensure image covers the circular area */
+            border-radius: 50%; /* Make image circular */
+            border: 3px solid var(--section-title-border); /* Gold outline */
+            filter: none; /* Remove grayscale filter by default */
+            transition: filter 0.5s ease, border-color 0.5s ease;
+            margin-bottom: 0.85rem; /* More space */
+        }
+        .logo-item:hover img {
+            filter: brightness(110%); /* Slight brightness on hover */
+        }
+        .logo-item p {
+                font-size: 1rem; /* Slightly larger text */
+                font-weight: 600;
+                color: inherit; /* Inherit color from parent <a> */
+                transition: color 1s ease;
+            }
+
+            /* Video Showreels Specific Styles */
+            .video-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid for videos */
+                gap: 2rem;
+            }
+            .video-item {
+                background: var(--card-bg);
+                backdrop-filter: blur(25px);
+                -webkit-backdrop-filter: blur(25px);
+                border-radius: 1.25rem;
+                border: 1px solid var(--card-border);
+                box-shadow: 0 8px 32px var(--card-shadow);
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                overflow: hidden; /* Ensures iframe doesn't break layout */
+                transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s ease-in-out, background 1s ease, border-color 1s ease;
+            }
+            .video-item:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 45px var(--card-shadow);
+            }
+            .video-responsive {
+                position: relative;
+                width: 100%;
+                padding-bottom: 56.25%; /* 16:9 Aspect Ratio (9 / 16 * 100) */
+                height: 0;
+                margin-bottom: 1rem;
+            }
+            .video-responsive iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 0.75rem; /* Rounded corners for the video player */
+                border: none;
+            }
+            .video-item h3 {
+                font-size: 1.125rem; /* text-lg */
+                font-weight: 600;
+                color: var(--text-color);
+                margin-bottom: 0.5rem;
+                text-align: center;
+            }
+            .video-item p {
+                font-size: 0.875rem; /* text-sm */
+                color: var(--text-color);
+                text-align: center;
+            }
+
+            /* Hero Video Background Styles - REMOVED */
+            .hero-video-container {
+                /* No longer needed */
+                display: none; /* Ensure it's completely hidden */
+            }
+            .hero-video {
+                /* No longer needed */
+                display: none; /* Ensure it's completely hidden */
+            }
+            .hero-video-overlay { /* Keep overlay for consistent header background */
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: var(--video-overlay-bg); /* Dynamic overlay based on theme */
+                z-index: -1; /* Above video, below content */
+                transition: background-color 1s ease;
+                border-radius: 1.5rem; /* Match card border radius */
+            }
+            /* Ensure header content is relative to be above video */
+            .header-content-wrapper { /* New wrapper for content inside header */
+                position: relative;
+                z-index: 1;
+                padding: 2.5rem; /* Original padding moved here */
+                padding-top: 3.5rem; /* Adjusted for larger profile pic/spacing */
+                padding-bottom: 3.5rem;
+            }
+            /* Adjust header card padding to allow video to fill */
+            header.card {
+                padding: 0; /* Remove direct padding from card */
+                /* Set a min-height for the header card if no video */
+                min-height: 400px; /* Adjust as needed for aesthetic balance */
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            /* Specific fix for summary text overflow */
+            .card p.leading-relaxed {
+                line-height: 1.75; /* Ensure enough line spacing */
+                padding: 0 1.5rem; /* Increased horizontal padding to prevent text from touching edges */
+                box-sizing: border-box; /* Include padding in element's total width/height */
+                font-size: 0.95rem; /* Slightly smaller font size for better fit */
+            }
+            /* Ensure list items also have enough space */
+            .card ul.list-disc li {
+                line-height: 1.75;
+                font-size: 0.95rem; /* Slightly smaller font size for better fit */
+            }
+
+            /* Main wrapper to contain all content below sticky nav */
+            .main-content-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                min-height: calc(100vh - var(--nav-height, 0px)); /* Adjust height for nav */
+                padding: 1rem;
+                padding-top: var(--nav-height, 0px); /* Push content below sticky nav */
+            }
+            /* New: Header intro text styling */
+            .header-intro-text {
+                font-size: 1.5rem; /* text-2xl */
+                font-weight: 500; /* medium */
+                line-height: 1.6;
+                margin-top: 2rem;
+                max-width: 600px; /* Limit width for readability */
+                text-align: center;
+                color: var(--header-name-color); /* Use header name color for prominence */
+                text-shadow: var(--header-text-shadow-light); /* Apply text shadow */
+                transition: color 1s ease, text-shadow 1s ease;
+            }
+            body.dark-mode .header-intro-text {
+                text-shadow: none; /* Remove shadow in dark mode */
+            }
+        </style>
+    </head>
+    <body class="antialiased">
+        <!-- Sticky Navigation Bar -->
+        <div class="nav-container">
+            <nav class="nav-links-wrapper">
+                <a href="#cv" class="nav-link" data-target="cv-content" data-key="navProfile">Profil & Pengalaman</a>
+                <a href="#clients" class="nav-link" data-target="clients-content" data-key="navClients">Klien Terpercaya</a>
+                <a href="#showreels" class="nav-link" data-target="showreels-content" data-key="navShowreels">Video Showreels</a>
+                <a href="#contact" class="nav-link" data-target="contact-content" data-key="navContact">Hubungi Saya</a>
+            </nav>
+        </div>
+
+        <!-- Main content wrapper to handle padding for sticky nav -->
+        <div class="main-content-wrapper">
+            <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-5xl"> <!-- Increased max-w to 5xl -->
+                <!-- Header -->
+                <header class="text-center mb-8 card">
+                    <!-- Keep overlay for consistent header background, now acts as main header background -->
+                    <div class="hero-video-overlay"></div>
+
+                    <!-- Content that sits OVER the background -->
+                    <div class="header-content-wrapper">
+                        <!-- Profile Picture -->
+                        <img src="https://i.imgur.com/DxT6dfZ.jpeg" alt="Foto Profil Fachry Akbar" class="profile-pic mx-auto">
+
+                        <h1 class="text-4xl sm:text-5xl font-bold mb-2 leading-tight">FACHRY AKBAR</h1>
+                        <p class="text-lg sm:text-xl text-gray-600 mb-4" data-key="headerSubtitle">Video Editor & Digital Marketing</p>
+
+                        <!-- New: Creative Introduction Text -->
+                        <p class="leading-relaxed text-center text-base px-6" data-key="headerIntroText">
+                            Halo, saya Fachry Akbar. Selamat datang di dunia saya! Di sini, seni visual bertemu dengan strategi digital. Saya adalah seorang Video Editor & Digital Marketing profesional yang bersemangat menciptakan cerita visual yang tak terlupakan. Mari kita berkolaborasi dan wujudkan ide-ide brilian Anda menjadi kenyataan.
+                        </p>
+
+                        <!-- Container for Theme Toggle and new Social Links Button -->
+                        <div class="flex justify-center items-center gap-4 mt-6">
+                            <!-- Theme Toggle Button -->
+                            <button id="theme-toggle" class="theme-toggle-button">
+                                <span id="theme-icon">☀️</span>
+                                <span id="theme-text" data-key="themeToggleText">Light Mode</span>
+                            </button>
+                            <!-- New Social Links Button -->
+                            <button id="social-links-toggle" class="social-links-button">
+                                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6.632l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path></svg>
+                            </button>
+                            <!-- Language Toggle Button -->
+                            <button id="lang-toggle" class="lang-toggle-button">
+                                <span data-key="langToggleText">EN</span>
+                            </button>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- CV Content Page -->
+                <section id="cv-content" class="page-content active">
+                    <!-- Summary -->
+                    <section class="card">
+                        <h2 class="text-2xl font-semibold mb-4 section-title" data-key="summaryTitle">Ringkasan Profesional</h2>
+                        <p class="leading-relaxed" data-key="summaryText">
+                            Sebagai penggemar seni visual, saya adalah Video Editor & Digital Marketing profesional dengan keahlian dalam penyuntingan video, motion graphics, 3D modeling, dan animasi. Menguasai Adobe Premiere Pro, After Effects, CapCut, dan lainnya, saya menciptakan narasi visual yang menarik untuk YouTube Podcast hingga Instagram Reels. Didukung pendidikan Film & TV serta sertifikasi profesional, saya berdedikasi menghasilkan konten kreatif dan teknis yang unggul, selalu mendorong batasan untuk dampak visual yang inovatif.
+                        </p>
+                    </section>
+
+                    <!-- Work Experience -->
+                    <section class="card">
+                        <h2 class="text-2xl font-semibold mb-4 section-title" data-key="experienceTitle">Pengalaman Kerja</h2>
+                        <div class="mb-6 pb-4 border-b border-gray-200 dark:border-gray-700 last:border-b-0">
+                            <h3 class="text-xl font-medium mb-1" data-key="jobTitle1">Video Editor</h3>
+                            <p class="text-blue-400 text-lg" data-key="company1">Dermapro SF Aesthetic Clinic</p>
+                            <p class="text-gray-400 text-sm mb-2" data-key="date1">Agustus 2024 - Saat ini</p>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li data-key="jobDesc1_1">Bertanggung jawab penuh atas produksi dan penyuntingan video konten promosi dan edukasi yang menarik untuk klinik.</li>
+                                <li data-key="jobDesc1_2">Berkolaborasi erat dengan tim pemasaran untuk mengembangkan strategi konten visual yang inovatif dan efektif, meningkatkan *engagement* audiens.</li>
+                            </ul>
+                        </div>
+                        <div class="mb-6 pb-4 border-b border-gray-200 dark:border-gray-700 last:border-b-0">
+                            <h3 class="text-xl font-medium mb-1" data-key="jobTitle2">Video Editor</h3>
+                            <p class="text-blue-400 text-lg" data-key="company2">BARAKA Productions</p>
+                            <p class="text-gray-400 text-sm mb-2" data-key="date2">Januari 2024 - Juli 2024</p>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li data-key="jobDesc2_1">Menyediakan layanan editing video dan motion graphics berkualitas tinggi untuk beragam klien, termasuk Tahseel Sahabat Ilmu, Muslimedika, SyariArt, dan Mama Gaio.</li>
+                                <li data-key="jobDesc2_2">Memanfaatkan keahlian dalam Adobe Premiere Pro, Adobe After Effect, dan Capcut untuk menghasilkan karya visual yang profesional.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-medium mb-1" data-key="jobTitle3">Video Editor (Magang)</h3>
+                            <p class="text-blue-400 text-lg" data-key="company3">PT. Gazwah Media Indonesia</p>
+                            <p class="text-gray-400 text-sm mb-2" data-key="date3">Juni 2022 - Agustus 2022</p>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li data-key="jobDesc3_1">Mengelola dokumentasi media untuk berbagai entitas seperti Uhud Tour, Ajwad Resto/Store, Gazwah Peduli, Sedekah Kreatif, Pustaka Ibnu Zaid, Mawaddah Indonesia & Gazwah Info.</li>
+                                <li data-key="jobDesc3_2">Melakukan penyuntingan video durasi panjang dan singkat yang dioptimalkan untuk platform Youtube, TikTok, dan Instagram menggunakan Adobe Premiere Pro dan After Effects.</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- Education -->
+                    <section class="card">
+                        <h2 class="text-2xl font-semibold mb-4 section-title" data-key="educationTitle">Riwayat Pendidikan</h2>
+                        <div class="mb-4 pb-3 border-b border-gray-200 dark:border-gray-700 last:border-b-0">
+                            <h3 class="text-xl font-medium mb-1" data-key="eduMajor1">Produksi Film & Program Siaran Televisi (Broadcasting)</h3>
+                            <p class="text-blue-400 text-lg" data-key="eduInst1">SMA/SMKS Bina Husada Mandiri</p>
+                            <p class="text-gray-400 text-sm" data-key="eduDate1">2020 - 2023</p>
+                        </div>
+                        <div class="mb-4 pb-3 border-b border-gray-200 dark:border-gray-700 last:border-b-0">
+                            <h3 class="text-xl font-medium mb-1" data-key="eduInst2">SMP/MTS Nurul Islam</h3>
+                            <p class="text-gray-400 text-sm" data-key="eduDate2">2017 - 2020</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-medium mb-1" data-key="eduInst3">SD/MI Nurul Islam</h3>
+                            <p class="text-gray-400 text-sm" data-key="eduDate3">2011 - 2017</p>
+                        </div>
+                    </section>
+
+                    <!-- Skills -->
+                    <section class="card skills-section">
+                        <h2 class="text-2xl font-semibold mb-4 section-title" data-key="skillsTitle">Keahlian Utama</h2>
+                        <div class="space-y-4">
+                            <div class="skill-item" data-skill-level="95%">
+                                <span class="skill-name" data-key="skill1">Menguasai Artificial Intelligence (AI) untuk optimasi alur kerja kreatif.</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar-fill"></div>
+                                    <span class="skill-bar-percentage">95%</span>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-skill-level="90%">
+                                <span class="skill-name" data-key="skill2">3D Modeling & Animasi</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar-fill"></div>
+                                    <span class="skill-bar-percentage">90%</span>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-skill-level="85%">
+                                <span class="skill-name" data-key="skill3">Visual FX (Level 1-3)</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar-fill"></div>
+                                    <span class="skill-bar-percentage">85%</span>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-skill-level="80%">
+                                <span class="skill-name" data-key="skill4">Pelatihan Jurnalistik (Oktober 2021) - Universitas PROF. DR. MOOSTOPO LPM DIAMMA</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar-fill"></div>
+                                    <span class="skill-bar-percentage">80%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Computer Skills -->
+                    <section class="card skills-section">
+                        <h2 class="text-2xl font-semibold mb-4 section-title" data-key="softwareTitle">Kemampuan Software</h2>
+                        <div class="space-y-4">
+                            <div class="skill-item" data-skill-level="95%">
+                                <span class="skill-name" data-key="software1">CapCut</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar-fill"></div>
+                                    <span class="skill-bar-percentage">95%</span>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-skill-level="95%">
+                                <span class="skill-name" data-key="software2">Adobe Premiere Pro</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar-fill"></div>
+                                    <span class="skill-bar-percentage">95%</span>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-skill-level="90%">
+                                <span class="skill-name" data-key="software3">Adobe After Effects</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar-fill"></div>
+                                    <span class="skill-bar-percentage">90%</span>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-skill-level="80%">
+                                <span class="skill-name" data-key="software4">Adobe Audition</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar-fill"></div>
+                                    <span class="skill-bar-percentage">80%</span>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-skill-level="75%">
+                                <span class="skill-name" data-key="software5">Final Cut Pro</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar-fill"></div>
+                                    <span class="skill-bar-percentage">75%</span>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-skill-level="70%">
+                                <span class="skill-name" data-key="software6">DaVinci Resolve Studio</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar-fill"></div>
+                                    <span class="skill-bar-percentage">70%</span>
+                                </div>
+                            </div>
+                            <div class="skill-item" data-skill-level="85%">
+                                <span class="skill-name" data-key="software7">Blender 3D</span>
+                                <div class="skill-bar-container">
+                                    <div class="skill-bar-fill"></div>
+                                    <span class="skill-bar-percentage">85%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Certifications or Awards -->
+                    <section class="card">
+                        <h2 class="text-2xl font-semibold mb-4 section-title" data-key="certAwardsTitle">Sertifikasi & Penghargaan</h2>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li data-key="certAward1">Sertifikasi Kompetensi Profesional - Badan Nasional Sertifikasi Profesi (BNSP) Juni 2023</li>
+                            <li data-key="certAward2">Finalis Top 50 Konten Kreator - Kompetisi BARDI Smart Home (Januari 202etelah 0 - Juli 2020)</li>
+                            <li data-key="certAward3">Juara 1 Lomba Film Dokumenter Barengana (GEBYAR Nusantara IPB) Oktober 2021</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <!-- Clients Wall Logo Page -->
+                <section id="clients-content" class="page-content">
+                    <section class="card">
+                        <h2 class="text-2xl font-semibold mb-6 section-title" data-key="clientsTitle">Klien Terpercaya</h2>
+                        <p class="text-center text-base mb-8 leading-relaxed" data-key="clientsIntro">
+                            Saya bangga telah berkolaborasi dengan berbagai klien dari beragam industri, membantu mereka mencapai tujuan visual dan naratif. Berikut adalah beberapa mitra yang telah mempercayakan proyek kreatif mereka kepada saya.
+                        </p>
+                        <div class="logo-grid">
+                            <!-- Client Logos with Names and Instagram Links -->
+                            <a href="https://www.instagram.com/dermaprosf" target="_blank" class="logo-item">
+                                <img src="https://i.imgur.com/fQbGVuQ.jpeg" alt="Foto Profil Instagram Dermapro SF" onerror="this.onerror=null;this.src='https://placehold.co/100x100/B8860B/FFFFFF?text=Dermapro+SF'">
+                                <p data-key="clientName1">Dermapro SF</p>
+                            </a>
+                            <a href="https://www.instagram.com/c31melbourne" target="_blank" class="logo-item">
+                                <img src="https://i.imgur.com/YJV4q5W.jpeg" alt="Foto Profil Instagram C31 Melbourne" onerror="this.onerror=null;this.src='https://placehold.co/100x100/B8860B/FFFFFF?text=C31+Melbourne'">
+                                <p data-key="clientName2">C31 Melbourne</p>
+                            </a>
+                            <a href="https://www.instagram.com/theshankarpillai" target="_blank" class="logo-item">
+                                <img src="https://i.imgur.com/cIJTZIT.jpeg" alt="Foto Profil Instagram The Shankar Pillai" onerror="this.onerror=null;this.src='https://placehold.co/100x100/B8860B/FFFFFF?text=Shankar+Pillai'">
+                                <p data-key="clientName3">The Shankar Pillai</p>
+                            </a>
+                            <a href="https://www.instagram.com/dr.pieterandre" target="_blank" class="logo-item">
+                                <img src="https://i.imgur.com/NhV9pzc.jpeg" alt="Foto Profil Instagram dr. Pieter Andre" onerror="this.onerror=null;this.src='https://placehold.co/100x100/B8860B/FFFFFF?text=dr.+Pieter+Andre'">
+                                <p data-key="clientName4">dr. Pieter Andre</p>
+                            </a>
+                            <a href="https://www.instagram.com/atdag_canberra" target="_blank" class="logo-item">
+                                <img src="https://i.imgur.com/Bt8NimV.jpeg" alt="Foto Profil Instagram Atase Perdagangan Canberra" onerror="this.onerror=null;this.src='https://placehold.co/100x100/B8860B/FFFFFF?text=Atase+Perdagangan+Canberra'">
+                                <p data-key="clientName5">Atase Perdagangan Canberra</p>
+                            </a>
+                            <a href="https://www.instagram.com/exportexpert_indonesia" target="_blank" class="logo-item">
+                                <img src="https://i.imgur.com/A0ofaOA.jpeg" alt="Foto Profil Instagram Export Expert Indonesia" onerror="this.onerror=null;this.src='https://placehold.co/100x100/B8860B/FFFFFF?text=Export+Expert+Indonesia'">
+                                <p data-key="clientName6">Export Expert Indonesia</p>
+                            </a>
+                            <a href="https://www.instagram.com/mamagaioresto" target="_blank" class="logo-item">
+                                <img src="https://i.imgur.com/tsm8GSn.jpeg" alt="Foto Profil Instagram Mama Gaio Resto" onerror="this.onerror=null;this.src='https://placehold.co/100x100/B8860B/FFFFFF?text=Mama+Gaio+Resto'">
+                                <p data-key="clientName7">Mama Gaio Resto</p>
+                            </a>
+                            <a href="https://www.instagram.com/halalfair.official" target="_blank" class="logo-item">
+                                <img src="https://i.imgur.com/ZE5UStF.jpeg" alt="Foto Profil Instagram Halal Fair" onerror="this.onerror=null;this.src='https://placehold.co/100x100/B8860B/FFFFFF?text=Halal+Fair'">
+                                <p data-key="clientName8">Halal Fair</p>
+                            </a>
+                            <a href="https://www.instagram.com/umitourtravel_id" target="_blank" class="logo-item">
+                                <img src="https://i.imgur.com/omydxA9.jpeg" alt="Foto Profil Instagram UMI Tour & Travel" onerror="this.onerror=null;this.src='https://placehold.co/100x100/B8860B/FFFFFF?text=UMI+Tour+Travel'">
+                                <p data-key="clientName9">UMI Tour & Travel</p>
+                            </a>
+                            <a href="https://www.instagram.com/syariart.official" target="_blank" class="logo-item">
+                                <img src="https://i.imgur.com/l2SCad3.jpeg" alt="Foto Profil Instagram SyariArt" onerror="this.onerror=null;this.src='https://placehold.co/100x100/B8860B/FFFFFF?text=SyariArt'">
+                                <p data-key="clientName10">SyariArt</p>
+                            </a>
+                            <a href="https://www.instagram.com/khalidbasalamahofficial" target="_blank" class="logo-item">
+                                <img src="https://i.imgur.com/JTkyXlT.jpeg" alt="Foto Profil Instagram Khalid Basalamah Official" onerror="this.onerror=null;this.src='https://placehold.co/100x100/B8860B/FFFFFF?text=Khalid+Basalamah'">
+                                <p data-key="clientName11">Khalid Basalamah Official</p>
+                            </a>
+                            <a href="https://www.instagram.com/mediarumu" target="_blank" class="logo-item">
+                                <img src="https://i.imgur.com/GzzOr3q.jpeg" alt="Foto Profil Instagram Mediarumu" onerror="this.onerror=null;this.src='https://placehold.co/100x100/B8860B/FFFFFF?text=Mediarumu'">
+                                <p data-key="clientName12">Mediarumu</p>
+                            </a>
+                        </div>
+                    </section>
+                </section>
+
+                <!-- Video Showreels Page -->
+                <section id="showreels-content" class="page-content">
+                    <section class="card">
+                        <h2 class="text-2xl font-semibold mb-6 section-title" data-key="videoShowreelsTitle">Video Showreels</h2>
+                        <p class="text-center text-base mb-8 leading-relaxed" data-key="videoShowreelsIntro">
+                            Lihatlah beberapa karya video pilihan saya yang menonjolkan keahlian saya dalam editing, motion graphics, dan penceritaan visual.
+                        </p>
+                        <div class="video-grid">
+                            <!-- Video 1: About Me (Moved to top) -->
+                            <div class="video-item">
+                                <div class="video-responsive">
+                                    <iframe src="https://drive.google.com/file/d/1nA-xs8tUkEW54isBLZQ6C4GR2urxHAq7/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <h3 data-key="videoTitle1">About Me</h3>
+                                <p data-key="videoDesc1">Video perkenalan singkat tentang perjalanan dan visi saya di dunia kreatif.</p>
+                            </div>
+                            <!-- Video 2: Highlight Halal Bihalal - Atase Perdagangan RI Canberra -->
+                            <div class="video-item">
+                                <div class="video-responsive">
+                                    <iframe src="https://drive.google.com/file/d/1ocT3OF7luphIzfDa0grOSK7l8Ba8pQ6n/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <h3 data-key="videoTitle2">Highlight Halal Bihalal - Atase Perdagangan RI Canberra</h3>
+                                <p data-key="videoDesc2">Video highlight acara Halal Bihalal di Canberra.</p>
+                            </div>
+                            <!-- Video 3: 360 Modeling Air Purifier BARDI Smart Home -->
+                            <div class="video-item">
+                                <div class="video-responsive">
+                                    <iframe src="https://drive.google.com/file/d/1y2wzP8Zaa79MeSZh4oPOh4M3R_iMKq--/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <h3 data-key="videoTitle3">360 Modeling Air Purifier BARDI Smart Home</h3>
+                                <p data-key="videoDesc3">Demonstrasi modeling 360 derajat untuk produk Air Purifier.</p>
+                            </div>
+                            <!-- Video 4: Highlight New Office Mediarumu -->
+                            <div class="video-item">
+                                <div class="video-responsive">
+                                    <iframe src="https://drive.google.com/file/d/1URMKQS9KIkyiStCaf1lMNJof091HZ3VO/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <h3 data-key="videoTitle4">Highlight New Office Mediarumu</h3>
+                                <p data-key="videoDesc4">Video highlight peresmian kantor baru Mediarumu.</p>
+                            </div>
+                            <!-- Video 5: Opening Event Creative Market Indonesia X Senayar Park -->
+                            <div class="video-item">
+                                <div class="video-responsive">
+                                    <iframe src="https://drive.google.com/file/d/1myz_f4jdWSyZe5SwbagyWV9KhAOL5g58/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <h3 data-key="videoTitle5">Opening Event Creative Market Indonesia X Senayar Park</h3>
+                                <p data-key="videoDesc5">Video pembukaan acara Creative Market Indonesia.</p>
+                            </div>
+                            <!-- Video 6: Reels 4 Ramen Favorit di Mama Gaio Resto -->
+                            <div class="video-item">
+                                <div class="video-responsive">
+                                    <iframe src="https://drive.google.com/file/d/1N7V4tyFx4JyjagjGh_6SDBG1c6MIcOtD/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <h3 data-key="videoTitle6">Reels 4 Ramen Favorit di Mama Gaio Resto</h3>
+                                <p data-key="videoDesc6">Video reels promosi ramen di Mama Gaio Resto.</p>
+                            </div>
+                            <!-- Video 7: Gazwah Info - Merayakan Kemerdekaan Indonesia -->
+                            <div class="video-item">
+                                <div class="video-responsive">
+                                    <iframe src="https://drive.google.com/file/d/1UbTvrh6xyUXFqasG4P7n9OxpintR06D_/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <h3 data-key="videoTitle7">Gazwah Info - Merayakan Kemerdekaan Indonesia</h3>
+                                <p data-key="videoDesc7">Video informasi dan perayaan kemerdekaan.</p>
+                            </div>
+                            <!-- Video 8: Video Editor Sekaligus Actor di Short Movie Kekuatan Iman -->
+                            <div class="video-item">
+                                <div class="video-responsive">
+                                    <iframe src="https://drive.google.com/file/d/1SgYD16hxtKCjBkgSohT2nNF4zYSTfw84/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <h3 data-key="videoTitle8">Video Editor Sekaligus Actor di Short Movie Kekuatan Iman</h3>
+                                <p data-key="videoDesc8">Keterlibatan sebagai editor dan aktor dalam film pendek.</p>
+                            </div>
+                            <!-- Video 9: Highlight HAJI Furoda UMI Tour x Marco -->
+                            <div class="video-item">
+                                <div class="video-responsive">
+                                    <iframe src="https://drive.google.com/file/d/1tNyHVz5Y9NoGEgwPCB-9Gp-BsMaan82Z/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <h3 data-key="videoTitle9">Highlight HAJI Furoda UMI Tour x Marco</h3>
+                                <p data-key="videoDesc9">Video highlight perjalanan HAJI Furoda.</p>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+
+                <!-- Contact Form Page -->
+                <section id="contact-content" class="page-content">
+                    <section class="card">
+                        <h2 class="text-2xl font-semibold mb-6 section-title" data-key="contactTitle">Mari Berkolaborasi</h2>
+                        <p class="text-center text-base mb-8 leading-relaxed" data-key="contactIntro">
+                            Tertarik untuk berdiskusi lebih lanjut tentang proyek Anda? Silakan isi formulir di bawah ini, dan saya akan segera menghubungi Anda.
+                        </p>
+                        <!-- Formspree Endpoint URL has been updated here -->
+                        <form id="contact-form" class="space-y-5" action="https://formspree.io/f/mgvyqwek" method="POST">
+                            <div>
+                                <label for="name" class="block text-sm font-medium mb-1" data-key="formNameLabel">Nama Lengkap Anda</label>
+                                <input type="text" id="name" name="name" class="form-input" placeholder="Contoh: Budi Santoso" required data-key="formNamePlaceholder">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium mb-1" data-key="formEmailLabel">Email Anda</label>
+                                <input type="email" id="email" name="_replyto" class="form-input" placeholder="Contoh: nama@email.com" required data-key="formEmailPlaceholder">
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-sm font-medium mb-1" data-key="formSubjectLabel">Subjek Pesan</label>
+                                <input type="text" id="subject" name="subject" class="form-input" placeholder="Contoh: Penawaran Proyek Video Baru" required data-key="formSubjectPlaceholder">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium mb-1" data-key="formMessageLabel">Pesan Anda</label>
+                                <textarea id="message" name="message" rows="6" class="form-input" placeholder="Jelaskan kebutuhan proyek atau pertanyaan Anda di sini..." required data-key="formMessagePlaceholder"></textarea>
+                            </div>
+                            <button type="submit" class="form-button w-full" data-key="formSubmitButton">Kirim Pesan Sekarang</button>
+                            <div id="form-message" class="mt-4 text-center font-medium" style="display: none;" data-key="formSuccessMessage">Pesan Anda telah berhasil dikirim! Terima kasih.</div>
+                        </form>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <!-- Social Links Pop-up (Overlay) -->
+        <div id="social-links-popup" class="social-popup">
+            <div class="social-popup-content card">
+                <h3 class="text-xl font-semibold mb-4 text-center" data-key="socialPopupTitle">Hubungi Saya</h3>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="mailto:fchryakbr2@gmail.com" class="social-link-text" target="_blank">
+                            <span data-key="socialGmail">Email Saya</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/farrifi_?igsh=YmplejRvbDExc2g2" target="_blank" class="social-link-text">
+                            <span data-key="socialInstagram">Instagram Saya</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/fachryakbar02?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="social-link-text">
+                            <span data-key="socialLinkedIn">LinkedIn Saya</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const themeToggle = document.getElementById('theme-toggle');
+                const themeIcon = document.getElementById('theme-icon');
+                const themeText = document.getElementById('theme-text');
+                const body = document.body;
+                const navContainer = document.querySelector('.nav-container');
+
+                // Elements for social links pop-up
+                const socialLinksToggle = document.getElementById('social-links-toggle');
+                const socialLinksPopup = document.getElementById('social-links-popup');
+
+                // Elements for language toggle
+                const langToggle = document.getElementById('lang-toggle');
+                const htmlTag = document.documentElement; // Get the html tag for lang attribute
+
+                // Define translations
+                const translations = {
+                    'id': {
+                        pageTitle: 'Fachry Akbar - Video Editor & Digital Marketing',
+                        headerSubtitle: 'Video Editor & Digital Marketing',
+                        headerIntroText: 'Halo, saya Fachry Akbar. Selamat datang di dunia saya! Di sini, seni visual bertemu dengan strategi digital. Saya adalah seorang Video Editor & Digital Marketing profesional yang bersemangat menciptakan cerita visual yang tak terlupakan. Mari kita berkolaborasi dan wujudkan ide-ide brilian Anda menjadi kenyataan.',
+                        themeToggleText: 'Light Mode',
+                        langToggleText: 'EN',
+                        navProfile: 'Profil & Pengalaman',
+                        navClients: 'Klien Terpercaya',
+                        navShowreels: 'Video Showreels',
+                        navContact: 'Hubungi Saya',
+                        summaryTitle: 'Ringkasan Profesional',
+                        summaryText: 'Sebagai penggemar seni visual, saya adalah Video Editor & Digital Marketing profesional dengan keahlian dalam penyuntingan video, motion graphics, 3D modeling, dan animasi. Menguasai Adobe Premiere Pro, After Effects, CapCut, dan lainnya, saya menciptakan narasi visual yang menarik untuk YouTube Podcast hingga Instagram Reels. Didukung pendidikan Film & TV serta sertifikasi profesional, saya berdedikasi menghasilkan konten kreatif dan teknis yang unggul, selalu mendorong batasan untuk dampak visual yang inovatif.',
+                        experienceTitle: 'Pengalaman Kerja',
+                        jobTitle1: 'Video Editor',
+                        company1: 'Dermapro SF Aesthetic Clinic',
+                        date1: 'Agustus 2024 - Saat ini',
+                        jobDesc1_1: 'Bertanggung jawab penuh atas produksi dan penyuntingan video konten promosi dan edukasi yang menarik untuk klinik.',
+                        jobDesc1_2: 'Berkolaborasi erat dengan tim pemasaran untuk mengembangkan strategi konten visual yang inovatif dan efektif, meningkatkan engagement audiens.',
+                        jobTitle2: 'Video Editor',
+                        company2: 'BARAKA Productions',
+                        date2: 'Januari 2024 - Juli 2024',
+                        jobDesc2_1: 'Menyediakan layanan editing video dan motion graphics berkualitas tinggi untuk beragam klien, termasuk Tahseel Sahabat Ilmu, Muslimedika, SyariArt, dan Mama Gaio.',
+                        jobDesc2_2: 'Memanfaatkan keahlian dalam Adobe Premiere Pro, Adobe After Effect, dan Capcut untuk menghasilkan karya visual yang profesional.',
+                        jobTitle3: 'Video Editor (Magang)',
+                        company3: 'PT. Gazwah Media Indonesia',
+                        date3: 'Juni 2022 - Agustus 2022',
+                        jobDesc3_1: 'Mengelola dokumentasi media untuk berbagai entitas seperti Uhud Tour, Ajwad Resto/Store, Gazwah Peduli, Sedekah Kreatif, Pustaka Ibnu Zaid, Mawaddah Indonesia & Gazwah Info.',
+                        jobDesc3_2: 'Melakukan penyuntingan video durasi panjang dan singkat yang dioptimalkan untuk platform Youtube, TikTok, dan Instagram menggunakan Adobe Premiere Pro dan After Effects.',
+                        educationTitle: 'Riwayat Pendidikan',
+                        eduMajor1: 'Produksi Film & Program Siaran Televisi (Broadcasting)',
+                        eduInst1: 'SMA/SMKS Bina Husada Mandiri',
+                        eduDate1: '2020 - 2023',
+                        eduInst2: 'SMP/MTS Nurul Islam',
+                        eduDate2: '2017 - 2020',
+                        eduInst3: 'SD/MI Nurul Islam',
+                        eduDate3: '2011 - 2017',
+                        skillsTitle: 'Keahlian Utama',
+                        skill1: 'Menguasai Artificial Intelligence (AI) untuk optimasi alur kerja kreatif.',
+                        skill2: '3D Modeling & Animasi',
+                        skill3: 'Visual FX (Level 1-3)',
+                        skill4: 'Pelatihan Jurnalistik (Oktober 2021) - Universitas PROF. DR. MOOSTOPO LPM DIAMMA',
+                        softwareTitle: 'Kemampuan Software',
+                        software1: 'CapCut',
+                        software2: 'Adobe Premiere Pro',
+                        software3: 'Adobe After Effects',
+                        software4: 'Adobe Audition',
+                        software5: 'Final Cut Pro',
+                        software6: 'DaVinci Resolve Studio',
+                        software7: 'Blender 3D',
+                        certAwardsTitle: 'Sertifikasi & Penghargaan',
+                        certAward1: 'Sertifikasi Kompetensi Profesional - Badan Nasional Sertifikasi Profesi (BNSP) Juni 2023',
+                        certAward2: 'Finalis Top 50 Konten Kreator - Kompetisi BARDI Smart Home (Januari 2020 - Juli 2020)',
+                        certAward3: 'Juara 1 Lomba Film Dokumenter Barengana (GEBYAR Nusantara IPB) Oktober 2021',
+                        clientsTitle: 'Klien Terpercaya',
+                        clientsIntro: 'Saya bangga telah berkolaborasi dengan berbagai klien dari beragam industri, membantu mereka mencapai tujuan visual dan naratif. Berikut adalah beberapa mitra yang telah mempercayakan proyek kreatif mereka kepada saya.',
+                        clientName1: 'Dermapro SF',
+                        clientName2: 'C31 Melbourne',
+                        clientName3: 'The Shankar Pillai',
+                        clientName4: 'dr. Pieter Andre',
+                        clientName5: 'Atase Perdagangan Canberra',
+                        clientName6: 'Export Expert Indonesia',
+                        clientName7: 'Mama Gaio Resto',
+                        clientName8: 'Halal Fair',
+                        clientName9: 'UMI Tour & Travel',
+                        clientName10: 'SyariArt',
+                        clientName11: 'Khalid Basalamah Official',
+                        clientName12: 'Mediarumu',
+                        videoShowreelsTitle: 'Video Showreels',
+                        videoShowreelsIntro: 'Lihatlah beberapa karya video pilihan saya yang menonjolkan keahlian saya dalam editing, motion graphics, dan penceritaan visual.',
+                        videoTitle1: 'About Me',
+                        videoDesc1: 'Video perkenalan singkat tentang perjalanan dan visi saya di dunia kreatif.',
+                        videoTitle2: 'Highlight Halal Bihalal - Atase Perdagangan RI Canberra',
+                        videoDesc2: 'Video highlight acara Halal Bihalal di Canberra.',
+                        videoTitle3: '360 Modeling Air Purifier BARDI Smart Home',
+                        videoDesc3: 'Demonstrasi modeling 360 derajat untuk produk Air Purifier.',
+                        videoTitle4: 'Highlight New Office Mediarumu',
+                        videoDesc4: 'Video highlight peresmian kantor baru Mediarumu.',
+                        videoTitle5: 'Opening Event Creative Market Indonesia X Senayar Park',
+                        videoDesc5: 'Video pembukaan acara Creative Market Indonesia.',
+                        videoTitle6: 'Reels 4 Ramen Favorit di Mama Gaio Resto',
+                        videoDesc6: 'Promotional reels video for ramen at Mama Gaio Resto.',
+                        videoTitle7: 'Gazwah Info - Merayakan Kemerdekaan Indonesia',
+                        videoDesc7: 'Video informasi dan perayaan kemerdekaan.',
+                        videoTitle8: 'Video Editor Sekaligus Actor di Short Movie Kekuatan Iman',
+                        videoDesc8: 'Keterlibatan sebagai editor dan aktor dalam film pendek.',
+                        videoTitle9: 'Highlight HAJI Furoda UMI Tour x Marco',
+                        videoDesc9: 'Highlight video of the HAJI Furoda journey.',
+                        contactTitle: 'Mari Berkolaborasi',
+                        contactIntro: 'Tertarik untuk berdiskusi lebih lanjut tentang proyek Anda? Silakan isi formulir di bawah ini, dan saya akan segera menghubungi Anda.',
+                        formNameLabel: 'Nama Lengkap Anda',
+                        formNamePlaceholder: 'Contoh: Budi Santoso',
+                        formEmailLabel: 'Email Anda',
+                        formEmailPlaceholder: 'Contoh: nama@email.com',
+                        formSubjectLabel: 'Subjek Pesan',
+                        formSubjectPlaceholder: 'Contoh: Penawaran Proyek Video Baru',
+                        formMessageLabel: 'Pesan Anda',
+                        formMessagePlaceholder: 'Jelaskan kebutuhan proyek atau pertanyaan Anda di sini...',
+                        formSubmitButton: 'Kirim Pesan Sekarang',
+                        formSuccessMessage: 'Pesan Anda telah berhasil dikirim! Terima kasih.',
+                        socialPopupTitle: 'Hubungi Saya',
+                        socialGmail: 'Email Saya',
+                        socialInstagram: 'Instagram Saya',
+                        socialLinkedIn: 'LinkedIn Saya'
+                    },
+                    'en': {
+                        pageTitle: 'Fachry Akbar - Video Editor & Digital Marketing',
+                        headerSubtitle: 'Video Editor & Digital Marketing',
+                        headerIntroText: 'Hello, I\'m Fachry Akbar. Welcome to my world! Here, visual arts meet digital strategy. I am a professional Video Editor & Digital Marketing specialist passionate about crafting unforgettable visual stories. Let\'s collaborate and bring your brilliant ideas to life.',
+                        themeToggleText: 'Dark Mode', // Will be updated by theme toggle logic
+                        langToggleText: 'ID',
+                        navProfile: 'Profile & Experience',
+                        navClients: 'Trusted Clients',
+                        navShowreels: 'Video Showreels',
+                        navContact: 'Contact Me',
+                        summaryTitle: 'Professional Summary',
+                        summaryText: 'As a visual arts enthusiast, I am a professional Video Editor & Digital Marketing specialist skilled in video editing, motion graphics, 3D modeling, and animation. Proficient in Adobe Premiere Pro, After Effects, CapCut, and other advanced editing tools, I craft compelling visual narratives for platforms ranging from YouTube Podcasts to Instagram Reels. My education in Film & Television Production from SMK Bina Husada Mandiri has provided me with a strong foundation in creating content that not only captures attention but also leaves a lasting impression on viewers. Driven by a passion for visual storytelling, my goal is to push the boundaries of digital content creation, making a lasting impact through innovative video production and design.',
+                        experienceTitle: 'Work Experience',
+                        jobTitle1: 'Video Editor',
+                        company1: 'Dermapro SF Aesthetic Clinic',
+                        date1: 'August 2024 - Present',
+                        jobDesc1_1: 'Fully responsible for the production and editing of engaging promotional and educational video content for the clinic.',
+                        jobDesc1_2: 'Collaborated closely with the marketing team to develop innovative and effective visual content strategies, increasing audience engagement.',
+                        jobTitle2: 'Video Editor',
+                        company2: 'BARAKA Productions',
+                        date2: 'January 2024 - July 2024',
+                        jobDesc2_1: 'Provided high-quality video editing and motion graphics services for diverse clients, including Tahseel Sahabat Ilmu, Muslimedika, SyariArt, and Mama Gaio.',
+                        jobDesc2_2: 'Utilized expertise in Adobe Premiere Pro, Adobe After Effects, and Capcut to produce professional visual works.',
+                        jobTitle3: 'Video Editor (Intern)',
+                        company3: 'PT. Gazwah Media Indonesia',
+                        date3: 'June 2022 - August 2022',
+                        jobDesc3_1: 'Managed media documentation for various entities such as Uhud Tour, Ajwad Resto/Store, Gazwah Peduli, Sedekah Kreatif, Pustaka Ibnu Zaid, Mawaddah Indonesia & Gazwah Info.',
+                        jobDesc3_2: 'Performed editing of long and short-form videos optimized for YouTube, TikTok, and Instagram platforms using Adobe Premiere Pro and After Effects.',
+                        educationTitle: 'Education History',
+                        eduMajor1: 'Film & Television Production (Broadcasting)',
+                        eduInst1: 'SMK Bina Husada Mandiri',
+                        eduDate1: '2020 - 2023',
+                        eduInst2: 'SMP/MTS Nurul Islam',
+                        eduDate2: '2017 - 2020',
+                        eduInst3: 'SD/MI Nurul Islam',
+                        eduDate3: '2011 - 2017',
+                        skillsTitle: 'Key Skills',
+                        skill1: 'Proficient in Artificial Intelligence (AI) for creative workflow optimization.',
+                        skill2: '3D Modeling & Animation',
+                        skill3: 'Visual FX (Level 1-3)',
+                        skill4: 'Journalism Training (October 2021) - PROF. DR. MOOSTOPO University LPM DIAMMA',
+                        softwareTitle: 'Software Proficiency',
+                        software1: 'CapCut',
+                        software2: 'Adobe Premiere Pro',
+                        software3: 'Adobe After Effects',
+                        software4: 'Adobe Audition',
+                        software5: 'Final Cut Pro',
+                        software6: 'DaVinci Resolve Studio',
+                        software7: 'Blender 3D',
+                        certAwardsTitle: 'Certifications & Awards',
+                        certAward1: 'Professional Competency Certification - National Professional Certification Agency (BNSP) June 2023',
+                        certAward2: 'Top 50 Content Creator Finalist - BARDI Smart Home Competition (January 2020 - July 2020)',
+                        certAward3: '1st Place Documentary Film Competition Barengana (GEBYAR Nusantara IPB) October 2021',
+                        clientsTitle: 'Trusted Clients',
+                        clientsIntro: 'I am proud to have collaborated with various clients from diverse industries, helping them achieve their visual and narrative goals. Below are some partners who have entrusted their creative projects to me.',
+                        clientName1: 'Dermapro SF',
+                        clientName2: 'C31 Melbourne',
+                        clientName3: 'The Shankar Pillai',
+                        clientName4: 'Dr. Pieter Andre',
+                        clientName5: 'Trade Attaché Canberra',
+                        clientName6: 'Export Expert Indonesia',
+                        clientName7: 'Mama Gaio Resto',
+                        clientName8: 'Halal Fair',
+                        clientName9: 'UMI Tour & Travel',
+                        clientName10: 'SyariArt',
+                        clientName11: 'Khalid Basalamah Official',
+                        clientName12: 'Mediarumu',
+                        videoShowreelsTitle: 'Video Showreels',
+                        videoShowreelsIntro: 'Explore a selection of my video works showcasing my expertise in editing, motion graphics, and visual storytelling.',
+                        videoTitle1: 'About Me',
+                        videoDesc1: 'Short introductory video about my journey and creative vision.',
+                        videoTitle2: 'Highlight Halal Bihalal - Trade Attaché RI Canberra',
+                        videoDesc2: 'Highlight video of the Halal Bihalal event in Canberra.',
+                        videoTitle3: '360 Modeling Air Purifier BARDI Smart Home',
+                        videoDesc3: '360-degree modeling demonstration for Air Purifier product.',
+                        videoTitle4: 'Highlight New Office Mediarumu',
+                        videoDesc4: 'Highlight video of Mediarumu\'s new office inauguration.',
+                        videoTitle5: 'Opening Event Creative Market Indonesia X Senayar Park',
+                        videoDesc5: 'Opening video of the Creative Market Indonesia event.',
+                        videoTitle6: 'Reels 4 Favorite Ramens at Mama Gaio Resto',
+                        videoDesc6: 'Promotional reels video for ramen at Mama Gaio Resto.',
+                        videoTitle7: 'Gazwah Info - Celebrating Indonesian Independence',
+                        videoDesc7: 'Informational video and independence celebration.',
+                        videoTitle8: 'Video Editor and Actor in Short Movie Kekuatan Iman',
+                        videoDesc8: 'Involvement as editor and actor in the short film.',
+                        videoTitle9: 'Highlight HAJI Furoda UMI Tour x Marco',
+                        videoDesc9: 'Highlight video of the HAJI Furoda journey.',
+                        contactTitle: 'Let\'s Collaborate',
+                        contactIntro: 'Interested in discussing your project further? Please fill out the form below, and I will get back to you soon.',
+                        formNameLabel: 'Your Full Name',
+                        formNamePlaceholder: 'Example: John Doe',
+                        formEmailLabel: 'Your Email',
+                        formEmailPlaceholder: 'Example: name@email.com',
+                        formSubjectLabel: 'Message Subject',
+                        formSubjectPlaceholder: 'Example: New Video Project Proposal',
+                        formMessageLabel: 'Your Message',
+                        formMessagePlaceholder: 'Explain your project needs or questions here...',
+                        formSubmitButton: 'Send Message Now',
+                        formSuccessMessage: 'Your message has been sent successfully! Thank you.',
+                        socialPopupTitle: 'Contact Me',
+                        socialGmail: 'Email Saya',
+                        socialInstagram: 'Instagram Saya',
+                        socialLinkedIn: 'LinkedIn Saya'
+                    }
+                };
+
+                // Function to set the theme
+                const setTheme = (theme) => {
+                    if (theme === 'dark') {
+                        body.classList.add('dark-mode');
+                        themeIcon.textContent = '🌙';
+                        themeText.textContent = translations[currentLang]['themeToggleText'].replace('Light', 'Dark'); // Update text based on current lang
+                        localStorage.setItem('theme', 'dark');
+                    } else {
+                        body.classList.remove('dark-mode');
+                        themeIcon.textContent = '☀️';
+                        themeText.textContent = translations[currentLang]['themeToggleText'].replace('Dark', 'Light'); // Update text based on current lang
+                        localStorage.setItem('theme', 'light');
+                    }
+                };
+
+                // Function to apply translations
+                const applyTranslations = (lang) => {
+                    document.querySelectorAll('[data-key]').forEach(element => {
+                        const key = element.getAttribute('data-key');
+                        if (translations[lang][key]) {
+                            if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
+                                element.setAttribute('placeholder', translations[lang][key]);
+                            } else if (element.tagName === 'TEXTAREA' && element.hasAttribute('placeholder')) {
+                                element.setAttribute('placeholder', translations[lang][key]);
+                            } else {
+                                element.textContent = translations[lang][key];
+                            }
+                        }
+                    });
+                    // Update page title
+                    document.title = translations[lang]['pageTitle'];
+                    // Update theme toggle text explicitly as it depends on theme state
+                    if (body.classList.contains('dark-mode')) {
+                        themeText.textContent = translations[lang]['themeToggleText'].replace('Light', 'Dark');
+                    } else {
+                        themeText.textContent = translations[lang]['themeToggleText'].replace('Dark', 'Light');
+                    }
+                    // Update lang toggle text
+                    langToggle.querySelector('span').textContent = translations[lang]['langToggleText'];
+                    htmlTag.setAttribute('lang', lang); // Update html lang attribute
+                };
+
+                let currentLang = localStorage.getItem('lang') || 'id'; // Default to Indonesian
+                applyTranslations(currentLang);
+
+                // Check for saved theme preference on load
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme) {
+                    setTheme(savedTheme);
+                } else {
+                    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                        setTheme('dark');
+                    } else {
+                        setTheme('light');
+                    }
+                }
+
+                // Toggle theme on button click
+                themeToggle.addEventListener('click', () => {
+                    if (body.classList.contains('dark-mode')) {
+                        setTheme('light');
+                    } else {
+                        setTheme('dark');
+                    }
+                });
+
+                // Toggle language on button click
+                langToggle.addEventListener('click', () => {
+                    currentLang = (currentLang === 'id') ? 'en' : 'id';
+                    localStorage.setItem('lang', currentLang);
+                    applyTranslations(currentLang);
+                    // Re-apply theme text after language change
+                    setTheme(body.classList.contains('dark-mode') ? 'dark' : 'light');
+                });
+
+                // --- Page Navigation Logic ---
+                const navLinks = document.querySelectorAll('.nav-link');
+                const pageContents = document.querySelectorAll('.page-content');
+
+                const showPage = (targetId) => {
+                    pageContents.forEach(page => {
+                        page.classList.remove('active');
+                        // Ensure display is none for inactive pages
+                        page.style.display = 'none';
+                    });
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                    });
+
+                    const activePage = document.getElementById(targetId);
+                    if (activePage) {
+                        activePage.classList.add('active');
+                        // Ensure display is block for active page
+                        activePage.style.display = 'block';
+                    }
+
+                    const activeNavLink = document.querySelector(`.nav-link[data-target="${targetId}"]`);
+                    if (activeNavLink) {
+                        activeNavLink.classList.add('active');
+                    }
+                };
+
+                // Handle navigation clicks with smooth scroll
+                navLinks.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault(); // Prevent default link behavior
+                        const targetId = link.dataset.target;
+                        showPage(targetId);
+                        // Update URL hash for direct linking/bookmarking
+                        window.location.hash = targetId.replace('-content', '');
+
+                        // Smooth scroll to the top of the target section with offset
+                        const targetSection = document.getElementById(targetId);
+                        if (targetSection) {
+                            const navHeight = navContainer.offsetHeight; // Get current sticky nav height
+                            // Get the top position of the target section relative to the viewport
+                            const elementPosition = targetSection.getBoundingClientRect().top;
+                            // Calculate the target scroll position, accounting for current scroll position, nav height, and a little extra padding
+                            const offsetPosition = window.pageYOffset + elementPosition - navHeight - 20;
+
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: "smooth"
+                            });
+                        }
+                    });
+                });
+
+
+                // Handle initial load and hash changes
+                const initialHash = window.location.hash.substring(1);
+                if (initialHash && document.getElementById(`${initialHash}-content`)) {
+                    showPage(`${initialHash}-content`);
+                } else {
+                    showPage('cv-content'); // Default to CV page
+                }
+
+                // Calculate and set CSS variable for sticky nav height
+                // This helps in pushing down the main content correctly
+                const setNavHeightVar = () => {
+                    const navHeight = navContainer.offsetHeight;
+                    document.documentElement.style.setProperty('--nav-height', `${navHeight}px`);
+                };
+
+                // Set initial height and update on resize
+                setNavHeightVar();
+                window.addEventListener('resize', setNavHeightVar);
+
+
+                // --- Contact Form Submission (using Formspree) ---
+                const contactForm = document.getElementById('contact-form');
+                const formMessage = document.getElementById('form-message');
+
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault(); // Prevent default form submission
+
+                    const form = e.target;
+                    const formData = new FormData(form);
+
+                    try {
+                        const response = await fetch(form.action, {
+                            method: form.method,
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+
+                        if (response.ok) {
+                            formMessage.style.display = 'block';
+                            formMessage.style.color = 'var(--section-title-color)';
+                            // Use translated success message
+                            formMessage.textContent = translations[currentLang]['formSuccessMessage'];
+                            form.reset(); // Clear the form
+                        } else {
+                            const data = await response.json();
+                            if (data.errors) {
+                                formMessage.style.display = 'block';
+                                formMessage.style.color = 'red';
+                                formMessage.textContent = data.errors.map(error => error.message).join(', ');
+                            } else {
+                                formMessage.style.display = 'block';
+                                formMessage.style.color = 'red';
+                                formMessage.textContent = translations[currentLang]['formErrorMessage'] || 'Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.';
+                            }
+                        }
+                    } catch (error) {
+                        formMessage.style.display = 'block';
+                        formMessage.style.color = 'red';
+                        formMessage.textContent = translations[currentLang]['formNetworkError'] || 'Terjadi kesalahan jaringan. Silakan coba lagi.';
+                        console.error('Error submitting form:', error);
+                    }
+
+                    // Hide message after a few seconds
+                    setTimeout(() => {
+                        formMessage.style.display = 'none';
+                    }, 5000);
+                });
+
+                // --- Social Links Pop-up Logic ---
+                socialLinksToggle.addEventListener('click', () => {
+                    socialLinksPopup.classList.toggle('active');
+                });
+
+                // Close pop-up when clicking outside the content
+                socialLinksPopup.addEventListener('click', (e) => {
+                    if (e.target === socialLinksPopup) { // Only close if clicked on the overlay itself
+                        socialLinksPopup.classList.remove('active');
+                    }
+                });
+
+                // --- Parallax Effect Logic ---
+                // Only apply parallax if not on mobile (to avoid performance issues)
+                if (window.innerWidth > 768) { // Example breakpoint for desktop
+                    const parallaxElements = document.querySelectorAll('[data-parallax-speed]');
+
+                    window.addEventListener('scroll', () => {
+                        const scrollY = window.pageYOffset;
+
+                        parallaxElements.forEach(element => {
+                            const speed = parseFloat(element.getAttribute('data-parallax-speed'));
+                            const transformY = scrollY * speed;
+                            element.style.transform = `translateY(${transformY}px)`;
+                        });
+                    });
+                }
+
+
+                // --- Skill Bar Animation Logic (Intersection Observer) ---
+                const skillSections = document.querySelectorAll('.skills-section');
+
+                const observerOptions = {
+                    root: null, // viewport as the root
+                    rootMargin: '0px',
+                    threshold: 0.5 // Trigger when 50% of the section is visible
+                };
+
+                const skillObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Add 'in-view' class to trigger CSS animation
+                            entry.target.classList.add('in-view');
+                            // Disconnect observer after animation to prevent re-triggering
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                skillSections.forEach(section => {
+                    skillObserver.observe(section);
+                });
+            });
+        </script>
+    </body>
+    </html>

@@ -6,7 +6,6 @@
     <title data-key="pageTitle">Fachry Akbar - Video Editor & Digital Marketing</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome (still included for general icons, but not for social popup) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* CSS Variables for Light Mode - Metallic Liquid Glass Palette (White/Silver & Gold) */
@@ -570,7 +569,6 @@
             border: 3px solid var(--section-title-border);
             filter: none;
             transition: filter 0.5s ease, border-color 0.5s ease;
-            margin-bottom: 0.85rem;
         }
         .logo-item:hover img {
             filter: brightness(110%);
@@ -697,11 +695,354 @@
                 text-shadow: none;
             }
 
+        /* ===== START: Instagram Feed Styles ===== */
+        .instagram-feed-container {
+            max-width: 450px; /* Mobile width */
+            margin: 2rem auto; /* Center on desktop */
+            background-color: var(--bg-gradient-mid);
+            color: var(--text-color);
+            border-radius: 2.5rem; /* Rounded corners like a phone */
+            border: 8px solid #111;
+            box-shadow: 0 20px 60px 0 var(--card-shadow);
+            overflow: hidden;
+            padding-bottom: 60px; /* Space for bottom nav */
+            position: relative;
+        }
+
+        body.dark-mode .instagram-feed-container {
+            background-color: #000;
+            border-color: #333;
+        }
+
+        .insta-header, .insta-bio, .insta-tabs, .insta-grid, .insta-footer {
+            padding: 12px 16px;
+        }
+        .insta-bio p {
+            word-break: break-word;
+        }
+
+        .insta-profile-pic {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #c13584; /* Instagram gradient-like color */
+        }
+        
+        .insta-stat {
+            text-align: center;
+        }
+        .insta-stat-num {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .insta-stat-label {
+            font-size: 0.85rem;
+            color: var(--header-subtitle-color);
+        }
+
+        .insta-btn {
+            background-color: var(--pill-nav-bg);
+            border: 1px solid transparent;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        body.dark-mode .insta-btn {
+             background-color: #363636;
+        }
+        
+        .insta-tabs {
+            border-top: 1px solid var(--card-border);
+            border-bottom: 1px solid var(--card-border);
+            margin-top: 1rem; /* Added margin to separate from buttons */
+        }
+        .insta-tab-icon {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-color);
+            opacity: 0.6;
+            cursor: pointer;
+        }
+        .insta-tab-icon.active {
+            opacity: 1;
+            border-bottom: 2px solid var(--text-color);
+            padding-bottom: 8px;
+        }
+        body.dark-mode .insta-tab-icon.active {
+             border-bottom: 2px solid #fff;
+        }
+        
+        .insta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            padding: 2px;
+        }
+        .feed-post {
+            position: relative;
+            width: 100%;
+            padding-bottom: 125%; /* REVISION: 4:5 Aspect Ratio */
+            cursor: pointer;
+        }
+        .feed-post img, .feed-post video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .feed-post-overlay {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        .insta-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--bg-gradient-mid);
+            border-top: 1px solid var(--card-border);
+            height: 60px;
+        }
+        body.dark-mode .insta-footer {
+            background-color: #000;
+        }
+        .insta-footer-icon {
+            width: 28px;
+            height: 28px;
+            fill: var(--text-color);
+        }
+
+        /* ===== START: REELS MODAL STYLES ===== */
+        .post-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .post-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        .reels-container {
+            position: relative;
+            width: auto; /* Let height and aspect ratio determine width */
+            height: 100%;
+            max-width: 100vw;
+            max-height: 95vh;
+            aspect-ratio: 9 / 16; /* REVISION: Enforce aspect ratio */
+            background: #111;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 20px 60px 0 rgba(0,0,0,0.5);
+        }
+        #reels-player-container {
+            width: 100%;
+            height: 100%;
+        }
+        #reels-player-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .reels-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.4) 100%);
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            padding: 1.25rem;
+        }
+        .reels-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .reels-header .close-modal-btn {
+            pointer-events: auto;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+        }
+        .reels-sidebar {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            pointer-events: auto;
+        }
+        .sidebar-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+            cursor: pointer;
+        }
+        .sidebar-icon svg {
+            width: 28px;
+            height: 28px;
+        }
+        .sidebar-icon span {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .reels-footer {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .reels-user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 600;
+        }
+        .reels-user-info img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        .reels-caption {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        /* ===== END: REELS MODAL STYLES ===== */
+
+        /* ===== START: NOTIFICATION BADGE STYLES ===== */
+        .notification-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 24px;
+            height: 24px;
+            background-color: #ff3b30; /* iOS red */
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            border: 2px solid var(--card-bg);
+            box-shadow: 0 0 10px rgba(255, 59, 48, 0.7);
+            animation: breathing 1.5s infinite ease-in-out;
+            z-index: 10;
+        }
+
+        @keyframes breathing {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 10px rgba(255, 59, 48, 0.7);
+            }
+            50% {
+                transform: scale(1.15);
+                box-shadow: 0 0 20px rgba(255, 59, 48, 1);
+            }
+        }
+        /* ===== END: NOTIFICATION BADGE STYLES ===== */
+
+        /* ===== START: FLOATING ACTION BUTTON ===== */
+        .contact-fab {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border-radius: 50%;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1500;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            animation: breathing-fab 2s infinite ease-in-out;
+        }
+
+        .contact-fab:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes breathing-fab {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 15px var(--button-bg);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 25px var(--button-bg);
+            }
+        }
+        
+        .notification-badge-fab {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 22px;
+            height: 22px;
+            background-color: #ff3b30;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            border: 2px solid var(--bg-gradient-mid);
+            box-shadow: 0 0 10px rgba(255, 59, 48, 0.7);
+            animation: breathing-badge-fast 1.2s infinite ease-in-out;
+            z-index: 10;
+        }
+
+        @keyframes breathing-badge-fast {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 8px rgba(255, 59, 48, 0.6);
+            }
+            50% {
+                transform: scale(1.2);
+                box-shadow: 0 0 18px rgba(255, 59, 48, 1);
+            }
+        }
+        /* ===== END: FLOATING ACTION BUTTON ===== */
+
+
         /* ===== START: MOBILE OPTIMIZATION STYLES (max-width: 640px) ===== */
         @media (max-width: 640px) {
             .nav-link {
-                padding: 0.5rem 1rem;
-                font-size: 0.875rem;
+                padding: 0.6rem 1rem; /* REVISED */
+                font-size: 0.8rem; /* REVISED */
             }
             .header-content-wrapper {
                 padding: 2rem 1rem; /* Reduced padding */
@@ -711,7 +1052,7 @@
                 height: 120px;
             }
             header h1 {
-                font-size: 2.25rem; /* text-4xl -> text-3xl */
+                font-size: 2rem; /* REVISION: Reduced font size */
             }
             header .text-lg { /* Subtitle */
                 font-size: 1rem; /* text-lg -> text-base */
@@ -743,6 +1084,51 @@
             .logo-grid, .video-grid {
                 gap: 1.5rem;
             }
+            /* Make instagram feed container full width on mobile */
+            .instagram-feed-container {
+                max-width: 100%;
+                margin: 0;
+                border-radius: 0;
+                border: none;
+            }
+            /* REVISION: Optimized Reels container for mobile */
+            .reels-container {
+                width: 100%;
+                height: 100%;
+                max-height: 100vh;
+                border-radius: 0;
+                aspect-ratio: unset; /* Let it fill the screen */
+            }
+            /* REVISION: Fix for overlapping stats text on mobile */
+            .insta-header .flex-grow {
+                padding-left: 0.5rem; 
+            }
+            .insta-stat-num {
+                font-size: 0.8rem;
+                font-weight: 600;
+            }
+            .insta-stat-label {
+                font-size: 0.65rem;
+            }
+            .reels-overlay {
+                padding: 1rem;
+            }
+            .reels-caption {
+                font-size: 0.85rem;
+            }
+            .sidebar-icon svg {
+                width: 24px;
+                height: 24px;
+            }
+            .sidebar-icon span {
+                font-size: 0.75rem;
+            }
+            .contact-fab {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 55px;
+                height: 55px;
+            }
         }
         /* ===== END: MOBILE OPTIMIZATION STYLES ===== */
 
@@ -753,10 +1139,9 @@
     <div class="nav-container">
         <nav class="pill-nav-container">
             <div class="pill-slider"></div>
-            <a href="#cv" class="nav-link" data-target="cv-content" data-key="navProfile">Profil & Pengalaman</a>
-            <a href="#clients" class="nav-link" data-target="clients-content" data-key="navClients">Klien Terpercaya</a>
-            <a href="#showreels" class="nav-link" data-target="showreels-content" data-key="navShowreels">Video Showreels</a>
-            <a href="#contact" class="nav-link" data-target="contact-content" data-key="navContact">Hubungi Saya</a>
+            <a href="#cv" class="nav-link" data-target="cv-content" data-key="navProfile">Profil Saya</a>
+            <a href="#clients" class="nav-link" data-target="clients-content" data-key="navClients">Klien</a>
+            <a href="#showreels" class="nav-link" data-target="showreels-content" data-key="navShowreels">Showreels</a>
         </nav>
     </div>
 
@@ -964,8 +1349,11 @@
                         Saya bangga telah berkolaborasi dengan berbagai klien dari beragam industri, membantu mereka mencapai tujuan visual dan naratif. Berikut adalah beberapa mitra yang telah mempercayakan proyek kreatif mereka kepada saya.
                     </p>
                     <div class="logo-grid">
-                        <a href="https://www.instagram.com/dermaprosf" target="_blank" class="logo-item">
-                            <img src="https://i.imgur.com/fQbGVuQ.jpeg" alt="Foto Profil Instagram Dermapro SF" onerror="this.onerror=null;this.src='https://placehold.co/100x100/B8860B/FFFFFF?text=Dermapro+SF'">
+                        <a href="#dermapro-feed" data-target="dermapro-feed-content" class="logo-item client-portfolio-link">
+                            <div class="relative mb-3">
+                                <img src="https://i.imgur.com/fQbGVuQ.jpeg" alt="Foto Profil Instagram Dermapro SF" onerror="this.onerror=null;this.src='https://placehold.co/100x100/B8860B/FFFFFF?text=Dermapro+SF'">
+                                <span class="notification-badge">4</span>
+                            </div>
                             <p data-key="clientName1">Dermapro SF</p>
                         </a>
                         <a href="https://www.instagram.com/c31melbourne" target="_blank" class="logo-item">
@@ -1038,55 +1426,7 @@
                             <h3 data-key="videoTitle2">Highlight Halal Bihalal - Atase Perdagangan RI Canberra</h3>
                             <p data-key="videoDesc2">Video highlight acara Halal Bihalal di Canberra.</p>
                         </div>
-                        <div class="video-item">
-                            <div class="video-responsive">
-                                <iframe src="https://drive.google.com/file/d/1y2wzP8Zaa79MeSZh4oPOh4M3R_iMKq--/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                            <h3 data-key="videoTitle3">360 Modeling Air Purifier BARDI Smart Home</h3>
-                            <p data-key="videoDesc3">Demonstrasi modeling 360 derajat untuk produk Air Purifier.</p>
-                        </div>
-                        <div class="video-item">
-                            <div class="video-responsive">
-                                <iframe src="https://drive.google.com/file/d/1URMKQS9KIkyiStCaf1lMNJof091HZ3VO/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                            <h3 data-key="videoTitle4">Highlight New Office Mediarumu</h3>
-                            <p data-key="videoDesc4">Video highlight peresmian kantor baru Mediarumu.</p>
-                        </div>
-                        <div class="video-item">
-                            <div class="video-responsive">
-                                <iframe src="https://drive.google.com/file/d/1myz_f4jdWSyZe5SwbagyWV9KhAOL5g58/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                            <h3 data-key="videoTitle5">Opening Event Creative Market Indonesia X Senayar Park</h3>
-                            <p data-key="videoDesc5">Video pembukaan acara Creative Market Indonesia.</p>
-                        </div>
-                        <div class="video-item">
-                            <div class="video-responsive">
-                                <iframe src="https://drive.google.com/file/d/1N7V4tyFx4JyjagjGh_6SDBG1c6MIcOtD/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                            <h3 data-key="videoTitle6">Reels 4 Ramen Favorit di Mama Gaio Resto</h3>
-                            <p data-key="videoDesc6">Video reels promosi ramen di Mama Gaio Resto.</p>
-                        </div>
-                        <div class="video-item">
-                            <div class="video-responsive">
-                                <iframe src="https://drive.google.com/file/d/1UbTvrh6xyUXFqasG4P7n9OxpintR06D_/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                            <h3 data-key="videoTitle7">Gazwah Info - Merayakan Kemerdekaan Indonesia</h3>
-                            <p data-key="videoDesc7">Video informasi dan perayaan kemerdekaan.</p>
-                        </div>
-                        <div class="video-item">
-                            <div class="video-responsive">
-                                <iframe src="https://drive.google.com/file/d/1SgYD16hxtKCjBkgSohT2nNF4zYSTfw84/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                            <h3 data-key="videoTitle8">Video Editor Sekaligus Actor di Short Movie Kekuatan Iman</h3>
-                            <p data-key="videoDesc8">Keterlibatan sebagai editor dan aktor dalam film pendek.</p>
-                        </div>
-                        <div class="video-item">
-                            <div class="video-responsive">
-                                <iframe src="https://drive.google.com/file/d/1tNyHVz5Y9NoGEgwPCB-9Gp-BsMaan82Z/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                            <h3 data-key="videoTitle9">Highlight HAJI Furoda UMI Tour x Marco</h3>
-                            <p data-key="videoDesc9">Video highlight perjalanan HAJI Furoda.</p>
-                        </div>
+                        <!-- ... other video items ... -->
                     </div>
                 </section>
             </section>
@@ -1120,6 +1460,120 @@
                     </form>
                 </section>
             </section>
+            
+            <!-- START: Instagram Feed Page -->
+            <section id="dermapro-feed-content" class="page-content">
+                <div class="instagram-feed-container">
+                    <!-- Profile Header -->
+                    <div class="insta-header p-4">
+                        <div class="flex items-center justify-between">
+                            <img src="https://i.imgur.com/fQbGVuQ.jpeg" alt="Dermapro Profile" class="insta-profile-pic">
+                            <div class="flex-grow flex justify-around">
+                                <div class="insta-stat"><span class="insta-stat-num">2.516</span><span class="insta-stat-label">posts</span></div>
+                                <div class="insta-stat"><span class="insta-stat-num">81,3K</span><span class="insta-stat-label">followers</span></div>
+                                <div class="insta-stat"><span class="insta-stat-num">576</span><span class="insta-stat-label">following</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bio Section -->
+                    <div class="insta-bio px-4 pb-3">
+                        <p class="font-bold text-sm">Dolphin Skin Treatment</p>
+                        <p class="text-sm text-gray-500">Health/beauty</p>
+                        <p class="text-sm whitespace-pre-line">
+                            Favorite Celebrity Beauty Clinic Insert Trans TV Award
+                            WA 1 : 0812 2424 2487
+                            WA 2 : 0877 3551 8503
+                            WA 3 : 0822 5222 2752
+                        </p>
+                        <a href="#" class="text-sm text-blue-400">maps.app.goo.gl/cRH...</a>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="flex gap-2 px-4 pb-4">
+                        <button class="insta-btn flex-1">Following</button>
+                        <button class="insta-btn flex-1">Message</button>
+                        <button class="insta-btn flex-1">Contact</button>
+                    </div>
+
+                    <!-- Tabs -->
+                    <div class="insta-tabs flex justify-around items-center">
+                        <svg class="insta-tab-icon active" viewBox="0 0 24 24"><path d="M3 3h18v18H3z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"></path><path d="M3 10h18M10 3v18"></path></svg>
+                        <svg class="insta-tab-icon" viewBox="0 0 24 24"><path d="M8 4l10 8-10 8V4z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"></path></svg>
+                        <svg class="insta-tab-icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"></path><circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" fill="none"></circle></svg>
+                    </div>
+                    
+                    <!-- Posts Grid -->
+                    <div class="insta-grid">
+                        <!-- Video 1 -->
+                        <a class="feed-post" 
+                           data-type="video" 
+                           data-src="https://www.youtube.com/embed/aHjmZdgpclI"
+                           data-user="dermaprosf"
+                           data-user-img="https://i.imgur.com/fQbGVuQ.jpeg"
+                           data-caption="Angie Carvalho - Dolphin Skin Facial"
+                           data-likes="1,205"
+                           data-comments="32">
+                            <img src="https://i.imgur.com/1navZTq.png" alt="Angie Carvalho - Dolphin Skin Facial">
+                            <div class="feed-post-overlay">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-btn-fill" viewBox="0 0 16 16"><path d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"/></svg>
+                            </div>
+                        </a>
+                        <!-- Video 2 -->
+                        <a class="feed-post" 
+                           data-type="video" 
+                           data-src="https://www.youtube.com/embed/DH7KLxjZpOU"
+                           data-user="dermaprosf"
+                           data-user-img="https://i.imgur.com/fQbGVuQ.jpeg"
+                           data-caption="Zsa Zsa Utari - Lips Radience Treatment"
+                           data-likes="3,112"
+                           data-comments="58">
+                            <img src="https://i.imgur.com/3DbJyjI.png" alt="Zsa Zsa Utari - Lips Radience Treatment">
+                            <div class="feed-post-overlay">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-btn-fill" viewBox="0 0 16 16"><path d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"/></svg>
+                            </div>
+                        </a>
+                        <!-- Video 3 -->
+                        <a class="feed-post" 
+                           data-type="video" 
+                           data-src="https://www.youtube.com/embed/sl9f5FFma6g"
+                           data-user="dermaprosf"
+                           data-user-img="https://i.imgur.com/fQbGVuQ.jpeg"
+                           data-caption="Sitha Marino - Dolphin Skin Facial"
+                           data-likes="5,041"
+                           data-comments="89">
+                            <img src="https://i.imgur.com/jruYbZQ.png" alt="Sitha Marino - Dolphin Skin Facial">
+                            <div class="feed-post-overlay">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-btn-fill" viewBox="0 0 16 16"><path d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"/></svg>
+                            </div>
+                        </a>
+                        <!-- Video 4 -->
+                        <a class="feed-post" 
+                           data-type="video" 
+                           data-src="https://www.youtube.com/embed/_gXAq8Gk1So"
+                           data-user="dermaprosf"
+                           data-user-img="https://i.imgur.com/fQbGVuQ.jpeg"
+                           data-caption="Pamella Safitri - Feminity Treatment"
+                           data-likes="4,582"
+                           data-comments="102">
+                            <img src="https://i.imgur.com/tg0Ewqu.png" alt="Pamella Safitri - Feminity Treatment">
+                            <div class="feed-post-overlay">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-btn-fill" viewBox="0 0 16 16"><path d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"/></svg>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- Bottom Navigation -->
+                    <div class="insta-footer flex justify-around items-center">
+                        <svg class="insta-footer-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"></path></svg>
+                        <svg class="insta-footer-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" fill="none"></circle><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"></line></svg>
+                        <svg class="insta-footer-icon" viewBox="0 0 24 24"><path d="M8 4l10 8-10 8V4z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"></path></svg>
+                        <svg class="insta-footer-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"></circle><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2"></path></svg>
+                        <img src="https://i.imgur.com/DxT6dfZ.jpeg" class="w-7 h-7 rounded-full border-2 border-current">
+                    </div>
+                </div>
+            </section>
+            <!-- END: Instagram Feed Page -->
         </div>
     </div>
 
@@ -1128,24 +1582,66 @@
         <div class="social-popup-content card">
             <h3 class="text-xl font-semibold mb-4 text-center" data-key="socialPopupTitle">Hubungi Saya</h3>
             <ul class="space-y-3">
-                <li>
-                    <a href="mailto:fchryakbr2@gmail.com" class="social-link-text" target="_blank">
-                        <span data-key="socialGmail">Email Saya</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.instagram.com/farrifi_?igsh=YmplejRvbDExc2g2" target="_blank" class="social-link-text">
-                        <span data-key="socialInstagram">Instagram Saya</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.linkedin.com/in/fachryakbar02?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="social-link-text">
-                        <span data-key="socialLinkedIn">LinkedIn Saya</span>
-                    </a>
-                </li>
+                <li><a href="mailto:fchryakbr2@gmail.com" class="social-link-text" target="_blank"><span data-key="socialGmail">Email Saya</span></a></li>
+                <li><a href="https://www.instagram.com/farrifi_?igsh=YmplejRvbDExc2g2" target="_blank" class="social-link-text"><span data-key="socialInstagram">Instagram Saya</span></a></li>
+                <li><a href="https://www.linkedin.com/in/fachryakbar02?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="social-link-text"><span data-key="socialLinkedIn">LinkedIn Saya</span></a></li>
             </ul>
         </div>
     </div>
+
+    <!-- START: REVISED Post Modal for Instagram Reels -->
+    <div id="post-modal" class="post-modal">
+        <div class="reels-container">
+            <div id="reels-player-container"></div>
+            
+            <div class="reels-overlay">
+                <!-- Header -->
+                <div class="reels-header">
+                    <button id="close-modal-btn" class="close-modal-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path d="M15.683 3.317a.5.5 0 0 1 0 .707L9.707 10l5.976 5.977a.5.5 0 1 1-.707.707L9 10.707l-5.977 5.976a.5.5 0 0 1-.707-.707L8.293 10 2.317 4.023a.5.5 0 1 1 .707-.707L9 9.293l5.977-5.976a.5.5 0 0 1 .706 0z"/></svg>
+                    </button>
+                    <span class="font-bold">Reels</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/><path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"/></svg>
+                </div>
+                
+                <!-- Footer -->
+                <div class="reels-footer">
+                    <div class="reels-user-info">
+                        <img id="reels-user-img" src="" alt="user">
+                        <span id="reels-user-name"></span>
+                    </div>
+                    <p id="reels-caption" class="reels-caption"></p>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="reels-sidebar">
+                <div class="sidebar-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>
+                    <span id="reels-likes-count"></span>
+                </div>
+                <div class="sidebar-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z"/></svg>
+                    <span id="reels-comments-count"></span>
+                </div>
+                <div class="sidebar-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11zM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493z"/></svg>
+                </div>
+                <div class="sidebar-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Post Modal for Instagram Reels -->
+
+    <!-- Floating Action Button for Contact -->
+    <a id="contact-fab" class="contact-fab">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+        </svg>
+        <span class="notification-badge-fab">1</span>
+    </a>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -1168,9 +1664,9 @@
                     headerIntroText: 'Halo, saya Fachry Akbar. Selamat datang di dunia saya! Di sini, seni visual bertemu dengan strategi digital. Saya adalah seorang Video Editor & Digital Marketing profesional yang bersemangat menciptakan cerita visual yang tak terlupakan. Mari kita berkolaborasi dan wujudkan ide-ide brilian Anda menjadi kenyataan.',
                     themeToggleText: 'Light Mode',
                     langToggleText: 'EN',
-                    navProfile: 'Profil & Pengalaman',
-                    navClients: 'Klien Terpercaya',
-                    navShowreels: 'Video Showreels',
+                    navProfile: 'Profil Saya',
+                    navClients: 'Klien',
+                    navShowreels: 'Showreels',
                     navContact: 'Hubungi Saya',
                     summaryTitle: 'Ringkasan Profesional',
                     summaryText: 'Sebagai penggemar seni visual, saya adalah Video Editor & Digital Marketing profesional dengan keahlian dalam penyuntingan video, motion graphics, 3D modeling, dan animasi. Menguasai Adobe Premiere Pro, After Effects, CapCut, dan lainnya, saya menciptakan narasi visual yang menarik untuk YouTube Podcast hingga Instagram Reels. Didukung pendidikan Film & TV serta sertifikasi profesional, saya berdedikasi menghasilkan konten kreatif dan teknis yang unggul, selalu mendorong batasan untuk dampak visual yang inovatif.',
@@ -1272,9 +1768,9 @@
                     headerIntroText: 'Hello, I\'m Fachry Akbar. Welcome to my world! Here, visual arts meet digital strategy. I am a professional Video Editor & Digital Marketing specialist passionate about crafting unforgettable visual stories. Let\'s collaborate and bring your brilliant ideas to life.',
                     themeToggleText: 'Dark Mode',
                     langToggleText: 'ID',
-                    navProfile: 'Profile & Experience',
-                    navClients: 'Trusted Clients',
-                    navShowreels: 'Video Showreels',
+                    navProfile: 'My Profile',
+                    navClients: 'Clients',
+                    navShowreels: 'Showreels',
                     navContact: 'Contact Me',
                     summaryTitle: 'Professional Summary',
                     summaryText: 'As a visual arts enthusiast, I am a professional Video Editor & Digital Marketing specialist skilled in video editing, motion graphics, 3D modeling, and animation. Proficient in Adobe Premiere Pro, After Effects, CapCut, and other advanced editing tools, I craft compelling visual narratives for platforms ranging from YouTube Podcasts to Instagram Reels. My education in Film & Television Production from SMK Bina Husada Mandiri has provided me with a strong foundation in creating content that not only captures attention but also leaves a lasting impression on viewers. Driven by a passion for visual storytelling, my goal is to push the boundaries of digital content creation, making a lasting impact through innovative video production and design.',
@@ -1472,26 +1968,35 @@
                 }
             };
 
-            navLinks.forEach(link => {
+            // --- OPTIMIZED: Combined Page Switching Logic ---
+            document.querySelectorAll('.nav-link, .client-portfolio-link').forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const targetId = link.dataset.target;
                     showPage(targetId);
-                    window.location.hash = targetId.replace('-content', '');
 
-                    const targetSection = document.getElementById(targetId);
-                    if (targetSection) {
-                        const navHeight = navContainer.offsetHeight;
-                        const elementPosition = targetSection.getBoundingClientRect().top;
-                        const offsetPosition = window.pageYOffset + elementPosition - navHeight - 20;
+                    // If it's a client portfolio link, just scroll to the top of the page.
+                    if (link.classList.contains('client-portfolio-link')) {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } 
+                    // Otherwise, handle scrolling for main navigation links.
+                    else {
+                        window.location.hash = targetId.replace('-content', '');
+                        const targetSection = document.getElementById(targetId);
+                        if (targetSection) {
+                            const navHeight = navContainer.offsetHeight;
+                            const elementPosition = targetSection.getBoundingClientRect().top;
+                            const offsetPosition = window.pageYOffset + elementPosition - navHeight - 20;
 
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: "smooth"
-                        });
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: "smooth"
+                            });
+                        }
                     }
                 });
             });
+
 
             const initialHash = window.location.hash.substring(1);
             if (initialHash && document.getElementById(`${initialHash}-content`)) {
@@ -1568,19 +2073,6 @@
                 }
             });
 
-            // --- Parallax Effect Logic ---
-            if (window.innerWidth > 768) {
-                const parallaxElements = document.querySelectorAll('[data-parallax-speed]');
-                window.addEventListener('scroll', () => {
-                    const scrollY = window.pageYOffset;
-                    parallaxElements.forEach(element => {
-                        const speed = parseFloat(element.getAttribute('data-parallax-speed'));
-                        const transformY = scrollY * speed;
-                        element.style.transform = `translateY(${transformY}px)`;
-                    });
-                });
-            }
-
             // --- Skill Bar Animation Logic (Intersection Observer) ---
             const skillSections = document.querySelectorAll('.skills-section');
             const observerOptions = {
@@ -1607,6 +2099,87 @@
             skillSections.forEach(section => {
                 skillObserver.observe(section);
             });
+
+            // --- START: REELS MODAL LOGIC FOR YOUTUBE ---
+            const postModal = document.getElementById('post-modal');
+            const reelsPlayerContainer = document.getElementById('reels-player-container');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const feedPosts = document.querySelectorAll('.feed-post');
+
+            // Reels UI elements
+            const reelsUserImg = document.getElementById('reels-user-img');
+            const reelsUserName = document.getElementById('reels-user-name');
+            const reelsCaption = document.getElementById('reels-caption');
+            const reelsLikes = document.getElementById('reels-likes-count');
+            const reelsComments = document.getElementById('reels-comments-count');
+
+            const openModal = (postElement) => {
+                const type = postElement.dataset.type;
+                if (type !== 'video') return; 
+
+                const videoSrc = postElement.dataset.src;
+                const videoId = videoSrc.split('/').pop().split('?')[0]; // Get ID before any params
+
+                // Populate Reels UI
+                reelsUserImg.src = postElement.dataset.userImg;
+                reelsUserName.textContent = postElement.dataset.user;
+                reelsCaption.textContent = postElement.dataset.caption;
+                reelsLikes.textContent = postElement.dataset.likes;
+                reelsComments.textContent = postElement.dataset.comments;
+                
+                // Create and configure iframe
+                const iframe = document.createElement('iframe');
+                // REVISION: Added allow="autoplay" for better autoplay compatibility. Mute=1 is still required by browsers.
+                iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=1&loop=1&playlist=${videoId}`;
+                iframe.setAttribute('frameborder', '0');
+                iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+                
+                reelsPlayerContainer.innerHTML = ''; // Clear previous
+                reelsPlayerContainer.appendChild(iframe);
+
+                postModal.classList.add('active');
+            };
+
+            const closeModal = () => {
+                postModal.classList.remove('active');
+                reelsPlayerContainer.innerHTML = ''; // This stops the video
+            };
+
+            feedPosts.forEach(post => {
+                post.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal(post);
+                });
+            });
+
+            closeModalBtn.addEventListener('click', closeModal);
+            postModal.addEventListener('click', (e) => {
+                if (e.target === postModal) {
+                    closeModal();
+                }
+            });
+            // --- END: REELS MODAL LOGIC FOR YOUTUBE ---
+
+            // --- START: FLOATING ACTION BUTTON LOGIC ---
+            const contactFab = document.getElementById('contact-fab');
+            contactFab.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = 'contact-content';
+                showPage(targetId);
+                
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    const navHeight = navContainer.offsetHeight;
+                    const elementPosition = targetSection.getBoundingClientRect().top;
+                    const offsetPosition = window.pageYOffset + elementPosition - navHeight - 20;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+            // --- END: FLOATING ACTION BUTTON LOGIC ---
         });
     </script>
 </body>

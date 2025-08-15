@@ -382,7 +382,7 @@
             align-items: center;
             background-color: var(--pill-nav-bg);
             border-radius: 9999px;
-            padding: 0.3rem;
+            padding: 0.3rem 0.4rem; /* REVISED */
             transition: background-color 1s ease;
             overflow-x: auto;
             -ms-overflow-style: none;
@@ -785,6 +785,10 @@
             width: 100%;
             padding-bottom: 125%; /* REVISION: 4:5 Aspect Ratio */
             cursor: pointer;
+            transition: transform 0.1s ease-in-out; /* Added for pop effect */
+        }
+        .feed-post:active {
+            transform: scale(0.95); /* Added for pop effect */
         }
         .feed-post img, .feed-post video {
             position: absolute;
@@ -830,16 +834,21 @@
             background-color: rgba(0,0,0,0.85);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            display: none;
+            display: flex;
             justify-content: center;
             align-items: center;
             z-index: 3000;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transform: scale(0.95);
+            transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out, visibility 0.2s;
+            pointer-events: none;
+            visibility: hidden;
         }
         .post-modal.active {
-            display: flex;
             opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+            visibility: visible;
         }
         .reels-container {
             position: relative;
@@ -1037,7 +1046,6 @@
         }
         /* ===== END: FLOATING ACTION BUTTON ===== */
 
-
         /* ===== START: MOBILE OPTIMIZATION STYLES (max-width: 640px) ===== */
         @media (max-width: 640px) {
             .nav-link {
@@ -1084,13 +1092,7 @@
             .logo-grid, .video-grid {
                 gap: 1.5rem;
             }
-            /* Make instagram feed container full width on mobile */
-            .instagram-feed-container {
-                max-width: 100%;
-                margin: 0;
-                border-radius: 0;
-                border: none;
-            }
+            
             /* REVISION: Optimized Reels container for mobile */
             .reels-container {
                 width: 100%;
@@ -1463,113 +1465,106 @@
             
             <!-- START: Instagram Feed Page -->
             <section id="dermapro-feed-content" class="page-content">
-                <div class="instagram-feed-container">
-                    <!-- Profile Header -->
-                    <div class="insta-header p-4">
-                        <div class="flex items-center justify-between">
-                            <img src="https://i.imgur.com/fQbGVuQ.jpeg" alt="Dermapro Profile" class="insta-profile-pic">
-                            <div class="flex-grow flex justify-around">
-                                <div class="insta-stat"><span class="insta-stat-num">2.516</span><span class="insta-stat-label">posts</span></div>
-                                <div class="insta-stat"><span class="insta-stat-num">81,3K</span><span class="insta-stat-label">followers</span></div>
-                                <div class="insta-stat"><span class="insta-stat-num">576</span><span class="insta-stat-label">following</span></div>
+                <div class="card">
+                    <div class="instagram-feed-container">
+                        <!-- Profile Header -->
+                        <div class="insta-header p-4">
+                            <div class="flex items-center justify-between">
+                                <img src="https://i.imgur.com/fQbGVuQ.jpeg" alt="Dermapro Profile" class="insta-profile-pic">
+                                <div class="flex-grow flex justify-around">
+                                    <div class="insta-stat"><span class="insta-stat-num">2.516</span><span class="insta-stat-label">posts</span></div>
+                                    <div class="insta-stat"><span class="insta-stat-num">81,3K</span><span class="insta-stat-label">followers</span></div>
+                                    <div class="insta-stat"><span class="insta-stat-num">576</span><span class="insta-stat-label">following</span></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Bio Section -->
-                    <div class="insta-bio px-4 pb-3">
-                        <p class="font-bold text-sm">Dolphin Skin Treatment</p>
-                        <p class="text-sm text-gray-500">Health/beauty</p>
-                        <p class="text-sm whitespace-pre-line">
-                            Favorite Celebrity Beauty Clinic Insert Trans TV Award
-                            WA 1 : 0812 2424 2487
-                            WA 2 : 0877 3551 8503
-                            WA 3 : 0822 5222 2752
-                        </p>
-                        <a href="#" class="text-sm text-blue-400">maps.app.goo.gl/cRH...</a>
-                    </div>
-                    
-                    <!-- Action Buttons -->
-                    <div class="flex gap-2 px-4 pb-4">
-                        <button class="insta-btn flex-1">Following</button>
-                        <button class="insta-btn flex-1">Message</button>
-                        <button class="insta-btn flex-1">Contact</button>
-                    </div>
+                        <!-- Bio Section -->
+                        <div class="insta-bio px-4 pb-3">
+                            <p class="font-bold text-sm">Dolphin Skin Treatment</p>
+                            <p class="text-sm text-gray-500">Health/beauty</p>
+                            <p class="text-sm whitespace-pre-line">
+                                Favorite Celebrity Beauty Clinic Insert Trans TV Award
+                                WA 1 : 0812 2424 2487
+                                WA 2 : 0877 3551 8503
+                                WA 3 : 0822 5222 2752
+                            </p>
+                            <a href="#" class="text-sm text-blue-400">maps.app.goo.gl/cRH...</a>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="flex gap-2 px-4 pb-4">
+                            <button class="insta-btn flex-1">Following</button>
+                            <button class="insta-btn flex-1">Message</button>
+                            <button class="insta-btn flex-1">Contact</button>
+                        </div>
 
-                    <!-- Tabs -->
-                    <div class="insta-tabs flex justify-around items-center">
-                        <svg class="insta-tab-icon active" viewBox="0 0 24 24"><path d="M3 3h18v18H3z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"></path><path d="M3 10h18M10 3v18"></path></svg>
-                        <svg class="insta-tab-icon" viewBox="0 0 24 24"><path d="M8 4l10 8-10 8V4z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"></path></svg>
-                        <svg class="insta-tab-icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"></path><circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" fill="none"></circle></svg>
-                    </div>
-                    
-                    <!-- Posts Grid -->
-                    <div class="insta-grid">
-                        <!-- Video 1 -->
-                        <a class="feed-post" 
-                           data-type="video" 
-                           data-src="https://www.youtube.com/embed/aHjmZdgpclI"
-                           data-user="dermaprosf"
-                           data-user-img="https://i.imgur.com/fQbGVuQ.jpeg"
-                           data-caption="Angie Carvalho - Dolphin Skin Facial"
-                           data-likes="1,205"
-                           data-comments="32">
-                            <img src="https://i.imgur.com/1navZTq.png" alt="Angie Carvalho - Dolphin Skin Facial">
-                            <div class="feed-post-overlay">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-btn-fill" viewBox="0 0 16 16"><path d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"/></svg>
-                            </div>
-                        </a>
-                        <!-- Video 2 -->
-                        <a class="feed-post" 
-                           data-type="video" 
-                           data-src="https://www.youtube.com/embed/DH7KLxjZpOU"
-                           data-user="dermaprosf"
-                           data-user-img="https://i.imgur.com/fQbGVuQ.jpeg"
-                           data-caption="Zsa Zsa Utari - Lips Radience Treatment"
-                           data-likes="3,112"
-                           data-comments="58">
-                            <img src="https://i.imgur.com/3DbJyjI.png" alt="Zsa Zsa Utari - Lips Radience Treatment">
-                            <div class="feed-post-overlay">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-btn-fill" viewBox="0 0 16 16"><path d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"/></svg>
-                            </div>
-                        </a>
-                        <!-- Video 3 -->
-                        <a class="feed-post" 
-                           data-type="video" 
-                           data-src="https://www.youtube.com/embed/sl9f5FFma6g"
-                           data-user="dermaprosf"
-                           data-user-img="https://i.imgur.com/fQbGVuQ.jpeg"
-                           data-caption="Sitha Marino - Dolphin Skin Facial"
-                           data-likes="5,041"
-                           data-comments="89">
-                            <img src="https://i.imgur.com/jruYbZQ.png" alt="Sitha Marino - Dolphin Skin Facial">
-                            <div class="feed-post-overlay">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-btn-fill" viewBox="0 0 16 16"><path d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"/></svg>
-                            </div>
-                        </a>
-                        <!-- Video 4 -->
-                        <a class="feed-post" 
-                           data-type="video" 
-                           data-src="https://www.youtube.com/embed/_gXAq8Gk1So"
-                           data-user="dermaprosf"
-                           data-user-img="https://i.imgur.com/fQbGVuQ.jpeg"
-                           data-caption="Pamella Safitri - Feminity Treatment"
-                           data-likes="4,582"
-                           data-comments="102">
-                            <img src="https://i.imgur.com/tg0Ewqu.png" alt="Pamella Safitri - Feminity Treatment">
-                            <div class="feed-post-overlay">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-btn-fill" viewBox="0 0 16 16"><path d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"/></svg>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <!-- Bottom Navigation -->
-                    <div class="insta-footer flex justify-around items-center">
-                        <svg class="insta-footer-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"></path></svg>
-                        <svg class="insta-footer-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" fill="none"></circle><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"></line></svg>
-                        <svg class="insta-footer-icon" viewBox="0 0 24 24"><path d="M8 4l10 8-10 8V4z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"></path></svg>
-                        <svg class="insta-footer-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"></circle><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2"></path></svg>
-                        <img src="https://i.imgur.com/DxT6dfZ.jpeg" class="w-7 h-7 rounded-full border-2 border-current">
+                        <!-- Tabs -->
+                        <div class="insta-tabs flex justify-around items-center">
+                            <svg class="insta-tab-icon active" viewBox="0 0 24 24"><path d="M3 3h18v18H3z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"></path><path d="M3 10h18M10 3v18"></path></svg>
+                            <svg class="insta-tab-icon" viewBox="0 0 24 24"><path d="M8 4l10 8-10 8V4z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"></path></svg>
+                            <svg class="insta-tab-icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"></path><circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" fill="none"></circle></svg>
+                        </div>
+                        
+                        <!-- Posts Grid -->
+                        <div class="insta-grid">
+                            <!-- Video 1 -->
+                            <a class="feed-post" 
+                               data-type="video" 
+                               data-src="https://www.youtube.com/embed/aHjmZdgpclI"
+                               data-user="dermaprosf"
+                               data-user-img="https://i.imgur.com/fQbGVuQ.jpeg"
+                               data-caption="Angie Carvalho - Dolphin Skin Facial"
+                               data-likes="1,205"
+                               data-comments="32">
+                                <img src="https://i.imgur.com/1navZTq.png" alt="Angie Carvalho - Dolphin Skin Facial">
+                                <div class="feed-post-overlay">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-btn-fill" viewBox="0 0 16 16"><path d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"/></svg>
+                                </div>
+                            </a>
+                            <!-- Video 2 -->
+                            <a class="feed-post" 
+                               data-type="video" 
+                               data-src="https://www.youtube.com/embed/DH7KLxjZpOU"
+                               data-user="dermaprosf"
+                               data-user-img="https://i.imgur.com/fQbGVuQ.jpeg"
+                               data-caption="Zsa Zsa Utari - Lips Radience Treatment"
+                               data-likes="3,112"
+                               data-comments="58">
+                                <img src="https://i.imgur.com/3DbJyjI.png" alt="Zsa Zsa Utari - Lips Radience Treatment">
+                                <div class="feed-post-overlay">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-btn-fill" viewBox="0 0 16 16"><path d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"/></svg>
+                                </div>
+                            </a>
+                            <!-- Video 3 -->
+                            <a class="feed-post" 
+                               data-type="video" 
+                               data-src="https://www.youtube.com/embed/sl9f5FFma6g"
+                               data-user="dermaprosf"
+                               data-user-img="https://i.imgur.com/fQbGVuQ.jpeg"
+                               data-caption="Sitha Marino - Dolphin Skin Facial"
+                               data-likes="5,041"
+                               data-comments="89">
+                                <img src="https://i.imgur.com/jruYbZQ.png" alt="Sitha Marino - Dolphin Skin Facial">
+                                <div class="feed-post-overlay">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-btn-fill" viewBox="0 0 16 16"><path d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"/></svg>
+                                </div>
+                            </a>
+                            <!-- Video 4 -->
+                            <a class="feed-post" 
+                               data-type="video" 
+                               data-src="https://www.youtube.com/embed/_gXAq8Gk1So"
+                               data-user="dermaprosf"
+                               data-user-img="https://i.imgur.com/fQbGVuQ.jpeg"
+                               data-caption="Pamella Safitri - Feminity Treatment"
+                               data-likes="4,582"
+                               data-comments="102">
+                                <img src="https://i.imgur.com/tg0Ewqu.png" alt="Pamella Safitri - Feminity Treatment">
+                                <div class="feed-post-overlay">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-btn-fill" viewBox="0 0 16 16"><path d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2m6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"/></svg>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1637,10 +1632,12 @@
 
     <!-- Floating Action Button for Contact -->
     <a id="contact-fab" class="contact-fab">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
-        </svg>
-        <span class="notification-badge-fab">1</span>
+        <div class="relative w-full h-full flex items-center justify-center">
+             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+            </svg>
+            <span class="notification-badge-fab">1</span>
+        </div>
     </a>
 
     <script>

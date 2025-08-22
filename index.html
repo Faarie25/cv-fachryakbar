@@ -574,6 +574,37 @@
 
         // Combined DOMContentLoaded listeners
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Visitor Tracking Logic ---
+            const trackVisitor = () => {
+                const visitorId = `visitor_${new Date().getTime()}`;
+                if (sessionStorage.getItem('visitorTracked')) {
+                    return;
+                }
+                sessionStorage.setItem('visitorTracked', visitorId);
+
+                const time = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
+                const device = navigator.userAgent;
+                const country = "Unknown (Location tracking disabled in preview)";
+
+                const formData = new FormData();
+                formData.append('subject', 'New Visitor to Your Portfolio!');
+                formData.append('Time', time + ' (WIB)');
+                formData.append('Device', device);
+                formData.append('Country', country);
+
+                fetch('https://formspree.io/f/mgvyqwek', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).catch(error => {
+                    console.error('Visitor tracking failed:', error);
+                });
+            };
+            trackVisitor();
+
+
             // --- Client Carousel and Modal Logic ---
             const clients = [
                 { name: 'Dermapro SF', logo: 'https://i.imgur.com/fQbGVuQ.jpeg', description: 'As a partner for this premium beauty clinic, I was responsible for enhancing brand presence through impactful video editing and graphic design for their Instagram platform.' },
